@@ -6,8 +6,7 @@ namespace ProjetoLesCode01
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Salve salve familia");
-            Console.WriteLine("Well Aqui");
+            Console.WriteLine("Salve salve lia");
         }
     }
 }
