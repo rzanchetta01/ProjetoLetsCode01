@@ -9,11 +9,12 @@ namespace ProjetoLesCode01
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("oii");
 
             List<ILojas> estabelecimentos = new List<ILojas>();//Lista que armazena os estabelecimentos
             AddLoja(estabelecimentos);//Chama o Registro de Lojas e salva e estabelecimentos
 
-        }
+        }  
 
         public static void AddLoja(List<ILojas> estabelecimentos)//Função para adcionar estabelecimentos
         {
