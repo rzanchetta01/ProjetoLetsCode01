@@ -33,22 +33,32 @@ namespace ProjetoLesCode01
                 nomeLoja = AuxAddLoja();
                 posShop = "Praça de alimentação";
 
-                estabelecimentos.Add(new FastFood(nomeLoja, posShop));//Cria um novo fast food
+                FastFood ff = new FastFood(nomeLoja, posShop);//Cria um novo fast food
+                ff.AddProduto();//adiciona o cardapio do fastfood
+                estabelecimentos.Add(ff);//Salva em estabelecimentos o fast food criado
+                
                 Console.WriteLine($"\nFoi registrado e construido mágicamente na {posShop} um FastFood com o nome de {nomeLoja}");
-
             }
             else if (tipoLoja == "LOJACOMUM")
             {
                 nomeLoja = AuxAddLoja();
                 posShop =  "corredores do shopping";
-                estabelecimentos.Add(new LojaComum(nomeLoja, posShop));// Cria uma nova loja comum
+
+                LojaComum lc = new LojaComum(nomeLoja, posShop);//Cria um nova loja comum
+                lc.AddProduto();//adiciona os produtos dessa loja
+                estabelecimentos.Add(lc);//Salva em estabelecimentos a loja criada
+
                 Console.WriteLine($"\nFoi registrado e construido mágicamente em algum dos {posShop} uma loja com o nome de {nomeLoja}");
             }
             else if (tipoLoja == "SELFSERVICE")
             {
                 nomeLoja = AuxAddLoja();
                 posShop =  "Praça de alimentação";
-                estabelecimentos.Add(new SelfService(nomeLoja, posShop));// Cria um novo self service
+
+                SelfService sf = new SelfService(nomeLoja, posShop);//Cria um novo Self Service
+                sf.AddProduto();//adiciona o cardapio do self service
+                estabelecimentos.Add(sf);//Salva em estabelecimentos o self service criado
+
                 Console.WriteLine($"\nFoi registrado e construido mágicamente na {posShop} um self service com o nome de {nomeLoja}");
             }
             else
@@ -77,7 +87,7 @@ namespace ProjetoLesCode01
         {
             string option;
 
-            Console.WriteLine($"\n{msg} \n sim ou não");
+            Console.WriteLine($"\n{msg} \nsim ou não");
             option = Console.ReadLine().ToUpper();
             Console.WriteLine("");
 
@@ -90,5 +100,7 @@ namespace ProjetoLesCode01
                 return false;
             }
         }
+    
+    
     }
 }

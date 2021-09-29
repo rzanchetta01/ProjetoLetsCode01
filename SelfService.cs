@@ -15,9 +15,13 @@ namespace ProjetoLesCode01
     {
         private string nomeSelfService {get; set;}
         private string posShop {get;}
+         private List<String> produtos = new List<String>();
 
-        private List<String> cardapio = new List<String>();
-        private List<String> pedidos = new List<String>();
+        public SelfService(String nomeSelfService, string posShop)
+        {
+            this.posShop = posShop;
+            this.nomeSelfService = nomeSelfService;
+        }
 
         public string NomeLoja {
 
@@ -28,20 +32,30 @@ namespace ProjetoLesCode01
             get  {return this.posShop; }
         }
 
-        public List<String> Cardapio {
+        public  List<String> Produtos {
 
-            get { return this.cardapio; }          
-        }
-        public List<String> Pedidos {
-
-            get { return this.pedidos; }           
+            get { return this.produtos;}
+            set {produtos = AddProduto();}
         }
 
-        public SelfService(String nomeSelfService, string posShop)
+        public List<String> AddProduto()
         {
-            this.posShop = posShop;
-            this.nomeSelfService = nomeSelfService;
-        }
+            List<String> produto = new List<string>();
 
+            Console.WriteLine("Vamos cria o seu cardapio");
+            Console.WriteLine("Quantos pratos deseja adicionar?");
+
+            int nProdutos;
+            Int32.TryParse(Console.ReadLine(), out nProdutos);
+
+            for (int i = 1; i <= nProdutos; i++)
+            {   
+                Console.Write($"\nPrato nº {i}: "); 
+                produto.Add(Console.ReadLine());            
+                Console.WriteLine("Prato adicionado com sucesso");             
+            }
+
+            return produto;
+        }
     }
 }
