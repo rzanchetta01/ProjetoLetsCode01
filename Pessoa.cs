@@ -21,14 +21,16 @@ namespace ProjetoLetsCode01
             this.nomePessoa = Nome;
         }
 
+        /* Cadastro da Pessoa */    
         public void CadastrarPessoa()
         {
             Console.WriteLine ("Bem vindo! Por favor, informe seu nome.");
-            string Nome = Console.ReadLine();
+            this.Nome = Console.ReadLine();
             Console.WriteLine ("Informe seu saldo disponível:");
             Double.TryParse(Console.ReadLine(), out saldo);
         }
 
+        /* Verificação: se a pessoa é somente cliente ou se é passageiro. */
         public void VerificarPessoa()
         {
             Console.WriteLine("Você é um passageiro? Sim ou Não.");
@@ -47,6 +49,7 @@ namespace ProjetoLetsCode01
 
         }
 
+        /* Atualização de saldo da pessoa após compra de item */
         double ComprarProduto (double precovenda)
         {
             if(ComprarItem())
@@ -56,6 +59,7 @@ namespace ProjetoLetsCode01
             return saldo;
         }
 
+        /* Verificação do saldo disponível da pessoa */
         public bool ComprarItem(double saldo, double valCompra) 
         {
             
@@ -77,14 +81,13 @@ namespace ProjetoLetsCode01
             Console.WriteLine ("Os destinos disponíveis são:");
             foreach (KeyValuePair<int, string> item in destino)
             {
-                Console.WriteLine("Código Voo {0} para {1}", item.Key, item.Value);
+                Console.WriteLine($"Código Voo {item.Key} para {item.Value}");
             }
 
             //3 - O cliente seleciona o Destino/Preço
             Console.WriteLine ("Selecione o código correspondente ao destino desejado:");
             var destinoCliente = (from e in destinos where e.Key == Console.ReadLine() select e.Value);
             return destinoCliente;
-            //Console.WriteLine ($"{destinoCliente}");
 
             //4 - Verifica o saldo da pessoa
             if (ComprarItem())
@@ -95,7 +98,7 @@ namespace ProjetoLetsCode01
             //5 - Confirma a compra
             Console.WriteLine ($"A compra da passagem com código {CodVoo} foi confirmada.");
             Console.WriteLine ($"Seu saldo é {saldo}.");
-            
+
             //voltar pro menu
         }
 
