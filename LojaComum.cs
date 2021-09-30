@@ -43,6 +43,22 @@ namespace ProjetoLesCode01
             this.posShop = posShop;
             this.nomeLojaComum = nomeLojaComum;
         }
+        public void AddCatalogo(sting algo) 
+        {
+            catalogo.add(algo);
+        }
+
+        public void MostrarCatalogo(string algo)
+        {
+            foreach(var e in catalogo){
+                console.WriteLine(e);
+            }
+        }
+
+        public void RemoverDoCatalogo(string algo)
+        {
+            cardapio.remove(algo);
+        }
 
     
     }
