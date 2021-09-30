@@ -75,9 +75,9 @@ namespace ProjetoLetsCode01
             //1 - Já temos: o nome da pessoa e o fato de que ela é um passageiro
             //2 - Apresentar Destino/Preço (foreach - destinos) - Program
             Console.WriteLine ("Os destinos disponíveis são:");
-            foreach (var DestinoVoo in destinos.Value)
+            foreach (KeyValuePair<int, string> item in destino)
             {
-                Console.WriteLine($"{DestinoVoo}, por {precopassagem} reais");
+                Console.WriteLine("Código Voo {0} para {1}", item.Key, item.Value);
             }
 
             //3 - O cliente seleciona o Destino/Preço
@@ -95,6 +95,8 @@ namespace ProjetoLetsCode01
             //5 - Confirma a compra
             Console.WriteLine ($"A compra da passagem com código {CodVoo} foi confirmada.");
             Console.WriteLine ($"Seu saldo é {saldo}.");
+            
+            //voltar pro menu
         }
 
         public void RegistrarBagagem ()
