@@ -7,8 +7,7 @@ namespace ProjetoLetsCode01
 {
     public interface ICLiente
     {
-        string NomeCLiente{get;}
-
+        string NomeCliente{get;}
         void ComprarProduto();
     }
 }

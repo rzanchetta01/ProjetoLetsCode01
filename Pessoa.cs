@@ -8,31 +8,56 @@ namespace ProjetoLetsCode01
     public class Pessoa: ICliente, IPassageiro
     {
         string nomePessoa;
-
+        
         public string NomePessoa
         {
-            get{return this.nomePessoa;}
-            set{this.nomePessoa = value;}
+            get{ return this.nomePessoa; }
+            set{ this.nomePessoa = value; }
         }
-
+      
         public Pessoa (string Nome) 
         {
             this.nomePessoa = Nome;
         }
 
-        public void ComprarProduto() 
+        public void VerificarPessoa()
         {
-           Console.WriteLine($"Você efetuou a compra do {/*nomedoproduto*/} com sucesso!");
+            Console.WriteLine("Você é um passageiro? sim ou nao. ");
+            string resposta = Console.ReadLine().ToLower();
+
+            if(resposta == "sim")
+            {
+                Console.WriteLine("Por favor adquira sua passagem.");
+                //chamar um metodoComprarPassagem
+            }
+            else if(resposta == "nao")
+            {
+                Console.WriteLine("Conheça nossas lojas.");
+            }
+
         }
 
-        public void ComprarPassagem()
+        double ComprarProduto(double precovenda)
         {
-            Console.WriteLine($"Você efetuou a compra da passagem código: {/*codigodapassagem*/} com sucesso!");
+            if(ComprarItem())
+            {
+               saldo -= precovenda;
+            }
+            return saldo;
         }
 
-        public void RegistrarBagagem()
+        public bool ComprarItem(double saldo, double valCompra) 
         {
-            Console.WriteLine($"Você registrou a sua bagagem {/*bagagem*/} com sucesso!");
-        }
+            
+            if(saldo >= valCompra)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+           
+        }        
     }
 }

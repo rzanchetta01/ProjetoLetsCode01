@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-/*
-IMPLEMENTAÇÃO BASE DA CLASE
-
-Precisa adcionar os metodos que darão utilidade a loja, por exemplo comprar roupas
-
-*/
 
 namespace ProjetoLesCode01
 {
@@ -20,16 +14,19 @@ namespace ProjetoLesCode01
         private List<String> cardapio = new List<String>();
         private List<String> pedidos = new List<String>();
 
-        public string NomeLoja {
-
+        public string NomeLoja
+        {
             get  { return this.nomeLojaComum; }           
         }
-        public string PosShop {
+        
+        public string PosShop
+        {
 
             get  {return this.posShop; }
         }
 
-        public List<String> Cardapio {
+        public List<String> Cardapio
+        {
 
             get { return this.cardapio; }          
         }
@@ -43,7 +40,6 @@ namespace ProjetoLesCode01
             this.posShop = posShop;
             this.nomeLojaComum = nomeLojaComum;
         }
-
     
     }
 }
