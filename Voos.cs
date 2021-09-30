@@ -10,6 +10,7 @@ namespace ProjetoLetsCode01
 {
     public class Voos
     {
+        double precopassagem = "150";
         private int codVoo;
         private string destinoVoo; 
 
@@ -18,16 +19,20 @@ namespace ProjetoLetsCode01
             get {return this.codVoo;}
         }
 
-        public string destinoVoo
+        public string DestinoVoo
         {
             get {return this.destinoVoo;}
         }
 
-        Dictionary<int, string> destinos = new Dictionary <int, string>();
-        destinos.Add(1, "RJ");
-        destinos.Add(2, "MG");
-        destinos.Add(3, "BA");
-        destinos.Add(4, "PR");
-        destinos.Add(5, "ES");
+        public void DestinosVoo ()
+        {
+            Dictionary<int, string> destinos = new Dictionary <int, string>();
+            destinos.Add(1, "RJ");
+            destinos.Add(2, "MG");
+            destinos.Add(3, "BA");
+            destinos.Add(4, "PR");
+            destinos.Add(5, "ES");
+        }
+
     }
 }
