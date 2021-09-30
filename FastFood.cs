@@ -56,11 +56,16 @@ namespace ProjetoLesCode01
             get { return this.pedidos; }           
         }
 
+<<<<<<< Updated upstream
         public FastFood(String nomeFastFood, string posShop)
         {
             this.posShop = posShop;
             this.nomeFastFood = nomeFastFood;
         }
+=======
+            
+    
+>>>>>>> Stashed changes
 
     }
 }
