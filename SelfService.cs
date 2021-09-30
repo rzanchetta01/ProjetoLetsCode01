@@ -17,7 +17,7 @@ namespace ProjetoLesCode01
         private string posShop {get;}
 
         private List<String> cardapio = new List<String>();
-        private List<String> pedidos = new List<String>();
+        
 
         public string NomeLoja {
 

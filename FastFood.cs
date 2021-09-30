@@ -14,35 +14,61 @@ namespace ProjetoLesCode01
 {
     public class FastFood: ILojas
     {
-        private string nomeFastFood {get; set;}
-        private string posShop {get;}
+        private String nomeFastFood;
+        private String posShop; 
 
         private List<String> cardapio = new List<String>();
-        private List<String> pedidos = new List<String>();
-
-        public string NomeLoja {
-
-            get  { return this.nomeFastFood; }           
-        }
-        public string PosShop {
-
-            get  {return this.posShop; }
-        }
-
-        public List<String> Cardapio {
-
-            get { return this.cardapio; }          
-        }
-        public List<String> Pedidos {
-
-            get { return this.pedidos; }           
-        }
-
-        public FastFood(String nomeFastFood, string posShop)
+     
+        public String NomeLoja
         {
-            this.posShop = posShop;
-            this.nomeFastFood = nomeFastFood;
+            get{ return nomeFastFood; }
+            set{ nomeFastFood = value; }
         }
 
+        public String PosShop
+        {
+            get { return posShop; }
+        }
+
+        public List<String> Cardapio
+        {
+            get { return cardapio; }          
+        }
+
+        public FastFood (String nomeFastFood, String posShop)
+        {
+            this.nomeFastFood = nomeFastFood;
+            this.posShop = posShop;
+        }
+
+        public void AddCardapio(String algo)
+        {
+            cardapio.Add(algo);
+        }
+
+        public void MostrarCardapio()
+        {
+            foreach(var e in cardapio)
+            {
+                Console.WriteLine(e);
+            }            
+        }
+
+        public void RemoverDoCardapio(String algo)
+        {
+           Cardapio.Remove(algo);
+        }
+
+        public double RealizarVenda(List<String> itens)
+        {
+            double precoTotal = 0;
+
+            foreach(var e in itens)
+            {
+                precoTotal = precoTotal + 5;
+            }
+
+            return precoTotal;
+        }
     }
 }
