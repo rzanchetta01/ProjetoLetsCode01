@@ -14,11 +14,29 @@ namespace ProjetoLesCode01
 {
     public class FastFood: ILojas
     {
-        private string nomeFastFood {get; set;}
-        private string posShop {get;}
-
+        private string nomeFastFood 
+        { 
+          get {return nomeFastFood;}
+          set {nomeFastFood = value;}
+        } 
+        private string posShop 
+        {
+            get {return posShop;}
+        }
         private List<String> cardapio = new List<String>();
+        public void Cardapio()
+        {
+            Console.WriteLine("hamburguer da casa");
+            Console.WriteLine("suco da fruta");
+            Console.WriteLine("batata frita");
+
+        } 
         private List<String> pedidos = new List<String>();
+        public void Pedidos()
+        {
+           Cardapio();
+           Console.WriteLine($"{nomeFastFood} - pedido feito");
+        }
 
         public string NomeLoja {
 

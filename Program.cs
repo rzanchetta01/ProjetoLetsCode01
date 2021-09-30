@@ -27,7 +27,7 @@ namespace ProjetoLesCode01
             Console.WriteLine("Qual o tipo de loja?");
             Console.WriteLine("Temos disponivel para registro : FastFood, LojaComum e SelfService");
             tipoLoja = Console.ReadLine().ToUpper();//Le o tipo de loja e deixa tudo em caixa alta para evitar problemas
-
+            
             if(tipoLoja == "FASTFOOD")
             {
 
