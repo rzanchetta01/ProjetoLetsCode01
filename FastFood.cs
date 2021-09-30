@@ -14,58 +14,61 @@ namespace ProjetoLesCode01
 {
     public class FastFood: ILojas
     {
-        private string nomeFastFood 
-        { 
-          get {return nomeFastFood;}
-          set {nomeFastFood = value;}
-        } 
-        private string posShop 
-        {
-            get {return posShop;}
-        }
+        private String nomeFastFood;
+        private String posShop; 
+
         private List<String> cardapio = new List<String>();
-        public void Cardapio()
+     
+        public String NomeLoja
         {
-            Console.WriteLine("hamburguer da casa");
-            Console.WriteLine("suco da fruta");
-            Console.WriteLine("batata frita");
+            get{ return nomeFastFood; }
+            set{ nomeFastFood = value; }
+        }
 
-        } 
-        private List<String> pedidos = new List<String>();
-        public void Pedidos()
+        public String PosShop
         {
-           Cardapio();
-           Console.WriteLine($"{nomeFastFood} - pedido feito");
+            get { return posShop; }
         }
 
-        public string NomeLoja {
-
-            get  { return this.nomeFastFood; }           
-        }
-        public string PosShop {
-
-            get  {return this.posShop; }
-        }
-
-        public List<String> Cardapio {
-
-            get { return this.cardapio; }          
-        }
-        public List<String> Pedidos {
-
-            get { return this.pedidos; }           
-        }
-
-<<<<<<< Updated upstream
-        public FastFood(String nomeFastFood, string posShop)
+        public List<String> Cardapio
         {
-            this.posShop = posShop;
+            get { return cardapio; }          
+        }
+
+        public FastFood (String nomeFastFood, String posShop)
+        {
             this.nomeFastFood = nomeFastFood;
+            this.posShop = posShop;
         }
-=======
-            
-    
->>>>>>> Stashed changes
 
+        public void AddCardapio(String algo)
+        {
+            cardapio.Add(algo);
+        }
+
+        public void MostrarCardapio()
+        {
+            foreach(var e in cardapio)
+            {
+                Console.WriteLine(e);
+            }            
+        }
+
+        public void RemoverDoCardapio(String algo)
+        {
+           Cardapio.Remove(algo);
+        }
+
+        public double RealizarVenda(List<String> itens)
+        {
+            double precoTotal = 0;
+
+            foreach(var e in itens)
+            {
+                precoTotal = precoTotal + 5;
+            }
+
+            return precoTotal;
+        }
     }
 }

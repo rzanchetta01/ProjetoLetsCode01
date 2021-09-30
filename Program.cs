@@ -34,7 +34,9 @@ namespace ProjetoLesCode01
                 nomeLoja = AuxAddLoja();
                 posShop = "Praça de alimentação";
 
-                estabelecimentos.Add(new FastFood(nomeLoja, posShop));//Cria um novo fast food
+                FastFood ff = new FastFood(nomeLoja, posShop);
+                ff.AddCardapio("coca coca");
+                estabelecimentos.Add(ff);//Cria um novo fast food
                 Console.WriteLine($"\nFoi registrado e construido mágicamente na {posShop} um FastFood com o nome de {nomeLoja}");
 
             }
@@ -60,7 +62,7 @@ namespace ProjetoLesCode01
 
 
             option = RepitirProcesso("Desejeita registrar outra loja?");
-            if(option)
+            if(option == true)
             {
                 AddLoja(estabelecimentos);
             }
@@ -91,5 +93,11 @@ namespace ProjetoLesCode01
                 return false;
             }
         }
+
+
     }
+
+    
+    
+    
 }
