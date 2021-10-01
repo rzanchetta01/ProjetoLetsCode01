@@ -105,16 +105,18 @@ namespace ProjetoLesCode01
             //voltar pro menu
         }
 
-        public void RegistrarBagagem ()
+        public void RegistrarBagagem (Produto produto)
         {
-            /*
-            1- Já temos: o nome da pessoa e a compra da passagem confirmada
-            2- Quantos itens ela quer registrar?
-            3- O passageiro seleciona
-            4- O passageiro registra os itens
-            5- Confirmação dos itens
-            6- Pronto
-            */
+            List<string> bagagem = new List<string>();
+
+            bagagem.Add(produto.NomeProduto);
+        }
+
+        public void RegistrarBagagemInicial(String produto)
+        {
+            List<string> bagagem = new List<string>();
+
+            bagagem.Add(produto);
         }
 
         public void ComprarProduto(Produto precovenda)

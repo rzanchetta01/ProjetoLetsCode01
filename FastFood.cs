@@ -80,8 +80,12 @@ namespace ProjetoLesCode01
                 return total;
             }
             else
-            {
-                Produto p = cardapio.First(p => p.NomeProduto.ToUpper() == nProduto.ToUpper());
+            {   
+                Produto p = cardapio.FirstOrDefault(p => p.NomeProduto.ToUpper() == nProduto.ToUpper());
+                if(p == null)
+                {
+                    return FazerVenda(pessoa, total);
+                }
                 total += p.Preco;
                 Console.WriteLine(total);
                 return FazerVenda(pessoa, total);

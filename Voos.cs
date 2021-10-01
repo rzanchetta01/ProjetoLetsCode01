@@ -10,9 +10,10 @@ namespace ProjetoLesCode01
 {
     public class Voos : ILojas
     {
+        Dictionary<int, string> destinos = new Dictionary<int, string>();
         private string nome;
         private string posShop;
-
+        
         public Voos(string nome, string posShop)
         {
             this.nome = nome;
@@ -24,7 +25,7 @@ namespace ProjetoLesCode01
 
         public Dictionary<int, string> DestinosVoo ()
         {
-            Dictionary<int, string> destinos = new Dictionary <int, string>();
+           
             destinos.Add(1, "RJ");
             destinos.Add(2, "MG");
             destinos.Add(3, "BA");
@@ -52,5 +53,6 @@ namespace ProjetoLesCode01
         {
             throw new NotImplementedException();
         }
+
     }
 }

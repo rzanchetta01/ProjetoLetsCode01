@@ -12,22 +12,19 @@ namespace ProjetoLesCode01
         static void Main(string[] args)
         {
 
-
             List<ILojas> estabelecimentos = new List<ILojas>();//Lista que armazena os estabelecimentos
             List<Pessoa> pessoas = new List<Pessoa>();
             
             LojasIncial(estabelecimentos, pessoas);//Cria lojas default, inclusive a empresa aerea
             StartMenu(estabelecimentos, pessoas);//Menu iniciar do sistema
             
-
-
         }
         public static void LojasIncial(List<ILojas> estabelecimentos, List<Pessoa> pessoas)
         {
             ILojas ps = new LojaComum("Carro do perigo", "na entrada do shopping");
             ILojas fs = new FastFood("FoodFast", "na praça de alimentação");
             ILojas sf = new SelfService("ServiceSelf", "na praça de alimentação");
-            ILojas v = new Voos("Passagens aereas", "na entrada do shopping");
+            
             Pessoa p = new Pessoa("r", 1000, false);
             
 
@@ -47,9 +44,10 @@ namespace ProjetoLesCode01
 
             estabelecimentos.Add(fs);
             estabelecimentos.Add(sf);
-            estabelecimentos.Add(ps);
-            estabelecimentos.Add(v);
+            estabelecimentos.Add(ps);           
             pessoas.Add(p);
+
+            
         }
         public static void StartMenu(List<ILojas> estabelecimentos, List<Pessoa> pessoas)//Mostra o menu inicial do sistema
         {   
@@ -82,13 +80,11 @@ namespace ProjetoLesCode01
                     break;
 
                 case 4:
-                    Pessoa cliente = SelectCliente(pessoas);                 
-                    ILojas loja = SelectEstabelecimento(estabelecimentos);
-                    double totalCompra = 0;
-                    totalCompra = loja.FazerVenda(cliente, 0);
-                    
-                    cliente.ComprarProduto(totalCompra);
-                    
+                    Console.WriteLine("");
+
+                    FazerCompra(estabelecimentos, pessoas);
+                    Thread.Sleep(1000);
+                    StartMenu(estabelecimentos, pessoas);//Caso digite um numero fora do menu, reinicia o processo
                     break;
 
                 case 0:
@@ -103,7 +99,7 @@ namespace ProjetoLesCode01
                     break;
             }
         }
-
+     
         public static void AddLoja(List<ILojas> estabelecimentos, List<Pessoa> pessoas)//Função para adcionar estabelecimentos
         {
 
@@ -185,7 +181,7 @@ namespace ProjetoLesCode01
                 nomeLoja = AuxAddLojaNome(estabelecimentos);
                 posShop = AuxAddLojaPos(estabelecimentos);
                 SelfService sf = new SelfService(nomeLoja, posShop);
-              //  estabelecimentos.Add(sf);
+                estabelecimentos.Add(sf);
 
                 Console.WriteLine("Agora vamos criar o seu cardapio inicial, você pode complementar ele depois através do menu inicial");
                 Console.WriteLine("Quantos pratos deseja adicionar inicialmente");
@@ -235,6 +231,7 @@ namespace ProjetoLesCode01
             }
 
         }
+       
         public static String AuxAddLojaNome(List<ILojas> estabelecimentos)//Função auxiliar do AddLoja
         {
             string nomeLoja;
@@ -254,6 +251,7 @@ namespace ProjetoLesCode01
 
             return nomeLoja;
         }
+        
         public static String AuxAddLojaPos(List<ILojas> estabelecimentos)//Função auxiliar do AddLoja
         {
 
@@ -279,6 +277,7 @@ namespace ProjetoLesCode01
             }
                              
         }
+        
         public static bool RepitirProcesso(string msg)//Função para repitir todas as tomadas de descisão de sim ou não
         {
             string option;
@@ -296,6 +295,7 @@ namespace ProjetoLesCode01
                 return false;
             }
         }
+       
         public static void AddCliente(List<ILojas> estabelecimentos, List<Pessoa> pessoas)//Registra novos clientes
         {
             Console.Write("\nQual o seu nome: ");
@@ -306,19 +306,31 @@ namespace ProjetoLesCode01
             double.TryParse(Console.ReadLine(), out saldoInicial);
 
             isPassageiro = RepitirProcesso("\nVocê é um passageiro?");
-            if (isPassageiro)
-            {
-                Console.Write("\nNão esqueça de comprar sua passagem para conseguir ir embora\n");
-            }
+
 
             Pessoa p = new Pessoa(nome, saldoInicial, isPassageiro);
             pessoas.Add(p);
+
+            if (isPassageiro)
+            {
+                Console.WriteLine("Qual a sua bagagem\nDigite 0 para sair");
+                String bag = Console.ReadLine();
+                while (bag != "0")
+                {
+                    p.RegistrarBagagemInicial(bag);
+                    Console.Write("Bagagem: ");
+                    bag = Console.ReadLine();
+                }
+
+                Console.Write("\nNão esqueça de comprar sua passagem para conseguir ir embora\n");
+            }
 
             Thread.Sleep(200);
             Console.WriteLine("Você foi registrado em nosso sistema");
 
             StartMenu(estabelecimentos, pessoas);
         }
+       
         public static void AlteraDadosLoja(List<ILojas> estabelecimentos, List<Pessoa> pessoas)//Altera o catalogo/produto das lojas
         {
             Console.WriteLine("Qual loja deseja alterar os dados?");
@@ -374,7 +386,7 @@ namespace ProjetoLesCode01
                 }
             }
         }
-
+       
         public static Pessoa SelectCliente(List<Pessoa> pessoas)
         {
             Console.WriteLine("Quem você é?\n");
@@ -399,7 +411,7 @@ namespace ProjetoLesCode01
             Console.WriteLine("Cliente não econtrado, tente novamente");
             return SelectCliente(pessoas);
         }
-
+       
         public static ILojas SelectEstabelecimento(List<ILojas> estabelecimentos)
         {
             Console.WriteLine("Qual estabelecimento deseja gastar seu dinheirinho?\n");
@@ -425,7 +437,32 @@ namespace ProjetoLesCode01
             Thread.Sleep(1000);
             return SelectEstabelecimento(estabelecimentos);
         }
+       
+        public static void FazerCompra(List<ILojas> estabelecimentos, List<Pessoa> pessoas)
+        {
+            Pessoa cliente = SelectCliente(pessoas);
+            if(cliente.IsPassageiro)
+            {
+                if (RepitirProcesso("Deseja comprar sua passagem?"))
+                {
+                    cliente.ComprarPassagem(340, TAP());
+                }
+            }
 
+
+            ILojas loja = SelectEstabelecimento(estabelecimentos);
+            
+            double totalCompra = 0;
+            totalCompra = loja.FazerVenda(cliente, 0);
+
+            cliente.ComprarProduto(totalCompra);
+        }   
+      
+        public static Voos TAP()
+        {
+            return new Voos("Passagens aereas", "na entrada do shopping");
+        }
+    
     }
 }
 

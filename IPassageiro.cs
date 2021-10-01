@@ -11,7 +11,6 @@ namespace ProjetoLesCode01
         bool IsPassageiro { get; }
 
         void ComprarPassagem(double precopassagem, Voos voo);
-        void RegistrarBagagem();
-        
+        void RegistrarBagagem(Produto produto);       
     }
 }
