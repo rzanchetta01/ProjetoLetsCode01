@@ -44,22 +44,24 @@ namespace ProjetoLesCode01
             get { return isPassageiro; }
         }    
 
-        public double ComprarProduto (double precovenda)
-        {
-            if(ComprarItem(precovenda))
+        public void ComprarProduto (double precovenda)
+        {            
+
+
+            if (ComprarItem(precovenda))
             {
-               Saldo -= precovenda;
+                Saldo -= precovenda;              
             }
             Console.WriteLine($"A compra foi confirmada.");
             Console.WriteLine($"Seu saldo é {Saldo}.");
-            return Saldo;
+
         }
 
         /* Verificação do saldo disponível da pessoa */
-        private bool ComprarItem(double valCompra) 
+        private bool ComprarItem(double valProduto) 
         {
             
-            if(Saldo >= valCompra)
+            if(Saldo >= valProduto)
             {
                 return true;
             }
@@ -113,6 +115,11 @@ namespace ProjetoLesCode01
             5- Confirmação dos itens
             6- Pronto
             */
-        }     
+        }
+
+        public void ComprarProduto(Produto precovenda)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

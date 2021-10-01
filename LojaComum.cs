@@ -65,5 +65,10 @@ namespace ProjetoLesCode01
             return null;
 
         }
+
+        public double FazerVenda(Pessoa pessoa, double total)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

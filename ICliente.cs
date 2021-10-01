@@ -8,6 +8,6 @@ namespace ProjetoLesCode01
     public interface ICliente
     {
         string NomeCliente{get;}
-        Double ComprarProduto(double precovenda);
+        void ComprarProduto(Produto precovenda);
     }
 }

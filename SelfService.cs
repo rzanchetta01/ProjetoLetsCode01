@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ProjetoLesCode01
 {
-    public class SelfService: ILojas
+    public class SelfService : ILojas
     {
 
         private string nomeSelfService;
@@ -40,6 +40,11 @@ namespace ProjetoLesCode01
             cardapio.Add(new Produto(nome, preco));
         }
 
+        public double FazerVenda(Pessoa pessoa, double total)
+        {
+            throw new NotImplementedException();
+        }
+
         public void MostrarProduto()
         {
             foreach(var e in cardapio)
@@ -62,6 +67,7 @@ namespace ProjetoLesCode01
             return null;
 
         }
+
 
     }  
 }

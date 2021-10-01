@@ -16,6 +16,8 @@ namespace ProjetoLesCode01
         void MostrarProduto();
 
         String RemoverProduto(String algo);
+
+        Double FazerVenda(Pessoa pessoa, double total);
     }
     
 }
