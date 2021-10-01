@@ -18,13 +18,18 @@ namespace ProjetoLesCode01
             LojasIncial(estabelecimentos);
             StartMenu(estabelecimentos);//Menu iniciar do sistema
         }
-
+        public static void LojasIncial(List<ILojas> estabelecimentos)
+        {
+            estabelecimentos.Add(new FastFood("FoodFast", "na praça de alimentação"));
+            estabelecimentos.Add(new SelfService("ServiceSelf", "na praça de alimentação"));
+            estabelecimentos.Add(new LojaComum("Passagens aereas", "na entrada do shopping"));
+        }
         public static void StartMenu(List<ILojas> estabelecimentos)
         {
             Console.WriteLine("\nBem vindo ao sistema do shopping ");
             Console.WriteLine("1 para Registrar loja");
-            Console.WriteLine("2 para Registrar cliente");
-            Console.WriteLine("3 para Registrar um produto de uma loja existente");
+            Console.WriteLine("2 para Registrar pessoa");
+            Console.WriteLine("3 para alterar um produto de uma loja existente");
             Console.WriteLine("4 para Simular um cliente");
             Console.WriteLine("0 para Sair");
 
@@ -44,6 +49,59 @@ namespace ProjetoLesCode01
 
                 case 3:
 
+                    Console.WriteLine("Qual loja deseija alterar os dados?");
+                    
+                    foreach (var e in estabelecimentos)
+                    {
+                        Console.WriteLine($"Loja: {e.NomeLoja}");
+                        
+                    }
+
+                    String lojaNome = Console.ReadLine();
+
+                    foreach (var e in estabelecimentos)
+                    {
+                        if(lojaNome.ToUpper() == e.NomeLoja.ToUpper())
+                        {
+                            int AddRemove;
+                            Console.WriteLine("1 para Adicionar um novo produto/prato ao estabelecimento");
+                            Console.WriteLine("2 para Remover um produto/prato existente ao estabelecimento");
+                            Int32.TryParse(Console.ReadLine(), out AddRemove);
+                            if(AddRemove == 1)
+                            {
+                                
+                                string nomePrato;
+                                double precoPrato;                                                          
+    
+                                Console.Write("Nome: ");
+                                nomePrato = Console.ReadLine();
+
+                                Console.Write("\nPreco: ");
+                                double.TryParse(Console.ReadLine(), out precoPrato);
+
+                                e.AddProduto(nomePrato, precoPrato);
+                                Console.WriteLine("Produto adicionado com sucesso");
+                                Thread.Sleep(500);
+                                StartMenu(estabelecimentos);
+                            }
+                            else if (AddRemove == 2)
+                            {
+                                Console.WriteLine("Qual produto deseja remover?");
+                                e.MostrarProduto();
+                                String removeProduto = Console.ReadLine();
+                                Console.WriteLine(e.RemoverProduto(removeProduto));
+                                Thread.Sleep(500);
+                                StartMenu(estabelecimentos);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Produto não encontrado");
+                                Thread.Sleep(500);
+                                StartMenu(estabelecimentos);
+                            }
+                        }
+                    }
+
                     break;
 
                 case 4:
@@ -62,10 +120,9 @@ namespace ProjetoLesCode01
                     break;
             }
         }
-       
         public static void AddLoja(List<ILojas> estabelecimentos)//Função para adcionar estabelecimentos
         {
-            
+
             string tipoLoja;
             string nomeLoja;
             string posShop;
@@ -75,88 +132,171 @@ namespace ProjetoLesCode01
             Console.WriteLine("Para voltar digite 0");
             Console.WriteLine("Temos disponivel para registro : FastFood, LojaComum e SelfService");
             tipoLoja = Console.ReadLine().ToUpper();//Le o tipo de loja e deixa tudo em caixa alta para evitar problemas
-            
-            if(tipoLoja == "FASTFOOD")
+
+            if (tipoLoja == "FASTFOOD")
             {
 
-                nomeLoja = AuxAddLoja(estabelecimentos);
-                posShop = "Praça de alimentação";
+                Console.WriteLine("Criando um FastFood");
+                nomeLoja = AuxAddLojaNome(estabelecimentos);
+                posShop = AuxAddLojaPos(estabelecimentos);
+                FastFood ff = new FastFood(nomeLoja, posShop);
+                estabelecimentos.Add(ff);
 
+                Console.WriteLine("Agora vamos criar o seu cardapio inicial, você pode complementar ele depois através do menu inicial");
+                Console.WriteLine("Quantos pratos deseja adicionar inicialmente");
+                int nProduto;
+                string nomePrato;
+                double precoPrato;
+                Int32.TryParse(Console.ReadLine(), out nProduto);
 
-                FastFood ff = new FastFood(nomeLoja, posShop);//Cria um novo fast food
-                ff.AddProduto();//adiciona o cardapio do fastfood
-                estabelecimentos.Add(ff);//Salva em estabelecimentos o fast food criado
-                Thread.Sleep(1000);
-                Console.WriteLine($"\nFoi registrado e construido mágicamente na {posShop} um FastFood com o nome de {nomeLoja}");
+                for (int i = 1; i <= nProduto; i++)
+                {
+                    Console.WriteLine($"Produto n{i}");
+
+                    Console.Write("Nome: ");
+                    nomePrato = Console.ReadLine();
+
+                    Console.Write("\nPreco: ");
+                    double.TryParse(Console.ReadLine(), out precoPrato);
+
+                    ff.AddProduto(nomePrato, precoPrato);
+                }
+
             }
             else if (tipoLoja == "LOJACOMUM")
             {
-                nomeLoja = AuxAddLoja(estabelecimentos);
-                posShop =  "corredores do shopping";
 
-                LojaComum lc = new LojaComum(nomeLoja, posShop);//Cria um nova loja comum
-                lc.AddProduto();//adiciona os produtos dessa loja
-                estabelecimentos.Add(lc);//Salva em estabelecimentos a loja criada
-                Thread.Sleep(1000);
-                Console.WriteLine($"\nFoi registrado e construido mágicamente em algum dos {posShop} uma loja com o nome de {nomeLoja}");
+                Console.WriteLine("Criando uma LojaComum");
+                nomeLoja = AuxAddLojaNome(estabelecimentos);
+                posShop = AuxAddLojaPos(estabelecimentos);
+                LojaComum lc = new LojaComum(nomeLoja, posShop);
+                estabelecimentos.Add(lc);
+
+                Console.WriteLine("Agora vamos registrar seus produtos iniciais, você pode adicionar outros através do menu inicial");
+                Console.WriteLine("Quantos produtos deseja adicionar inicialmente?");
+
+                int nProduto;
+                string nomeProduto;
+                double precoProduto;
+                Int32.TryParse(Console.ReadLine(), out nProduto);
+
+                for (int i = 1; i <= nProduto; i++)
+                {
+                    Console.WriteLine($"Prato n{i}");
+
+                    Console.Write("Nome: ");
+                    nomeProduto = Console.ReadLine();
+
+                    Console.Write("\nPreco: ");
+                    double.TryParse(Console.ReadLine(), out precoProduto);  
+                    
+                    lc.AddProduto(nomeProduto, precoProduto);
+                }
+
             }
             else if (tipoLoja == "SELFSERVICE")
             {
-                nomeLoja = AuxAddLoja(estabelecimentos);
-                posShop =  "Praça de alimentação";
 
-                SelfService sf = new SelfService(nomeLoja, posShop);//Cria um novo Self Service
-                sf.AddProduto();//adiciona o cardapio do self service
-                estabelecimentos.Add(sf);//Salva em estabelecimentos o self service criado
-                Thread.Sleep(500);
-                Console.WriteLine($"\nFoi registrado e construido mágicamente na {posShop} um self service com o nome de {nomeLoja}");
+                Console.WriteLine("Criando um SelfService");
+                nomeLoja = AuxAddLojaNome(estabelecimentos);
+                posShop = AuxAddLojaPos(estabelecimentos);
+                SelfService sf = new SelfService(nomeLoja, posShop);
+                estabelecimentos.Add(sf);
+
+                Console.WriteLine("Agora vamos criar o seu cardapio inicial, você pode complementar ele depois através do menu inicial");
+                Console.WriteLine("Quantos pratos deseja adicionar inicialmente");
+                int nProduto;
+                string nomePrato;
+                double precoPrato;
+                Int32.TryParse(Console.ReadLine(), out nProduto);
+
+                for (int i = 1; i <= nProduto; i++)
+                {
+                    Console.WriteLine($"Prato n{i}");
+
+                    Console.Write("Nome: ");
+                    nomePrato = Console.ReadLine();
+
+                    Console.Write("\nPreco: ");
+                    double.TryParse(Console.ReadLine(), out precoPrato);
+
+                    sf.AddProduto(nomePrato, precoPrato);
+                }
+
             }
             else if (tipoLoja == "0")
             {
+
                 StartMenu(estabelecimentos);
+
             }
-            else 
-            {   
+            else
+            {
                 Console.WriteLine("Tipo de loja não encontrado, tente novamente");
                 Thread.Sleep(1000);
                 AddLoja(estabelecimentos);//Repete o processo de digitar algum tipo de loja errado
             }
 
-
-
             option = RepitirProcesso("\nDesejeita registrar outra loja?");
-            if(option)
+
+            if (option)
             {
                 Thread.Sleep(1000);
                 AddLoja(estabelecimentos);
             }
-
             else
             {
                 Thread.Sleep(1000);
                 StartMenu(estabelecimentos);
             }
+
         }
-        public static String AuxAddLoja(List<ILojas> estabelecimentos)//Função auxiliar do AddLoja
+        public static String AuxAddLojaNome(List<ILojas> estabelecimentos)//Função auxiliar do AddLoja
         {
             string nomeLoja;
-            
+
             Console.Write("\nQual o nome da loja que você vai registrar? ");
             nomeLoja = Console.ReadLine();
 
             foreach (var e in estabelecimentos)
             {
-                if(e.NomeLoja.ToUpper() == nomeLoja.ToUpper())
+                if (e.NomeLoja.ToUpper() == nomeLoja.ToUpper())
                 {
                     Console.WriteLine("\nJa existe uma loja com esse nome tente novamente");
                     Thread.Sleep(1000);
-                    AuxAddLoja(estabelecimentos);
+                AuxAddLojaNome(estabelecimentos);
                 }
             }
 
             return nomeLoja;
         }
-       
+        public static String AuxAddLojaPos(List<ILojas> estabelecimentos)//Função auxiliar do AddLoja
+        {
+
+            int option;
+                
+            Console.Write("\nQual será o local onde a loja sera montada? ");
+            Console.WriteLine("Temos\n1: Praça de Alimentação\n2:Corredores do shopping");
+            Int32.TryParse(Console.ReadLine(), out option);
+
+            if(option == 1)
+            {
+                return "Praça de alimentação";  
+            }
+            else if (option == 2)
+            {
+                return "Corredores do shopping";
+            }
+            else 
+            {
+                Console.WriteLine("Opção inválida, tente novamente");
+                Thread.Sleep(500);
+                return AuxAddLojaPos(estabelecimentos);
+            }
+                             
+        }
+
+
         public static bool RepitirProcesso(string msg)//Função para repitir todos os processos de descisão de sim ou não
         {
             string option;
@@ -165,7 +305,7 @@ namespace ProjetoLesCode01
             option = Console.ReadLine().ToUpper();
             Console.WriteLine("");
 
-            if(option == "SIM")
+            if (option == "SIM")
             {
                 return true;
             }
@@ -173,13 +313,11 @@ namespace ProjetoLesCode01
             {
                 return false;
             }
-        }     
-        public static void LojasIncial (List<ILojas> estabelecimentos)
-        {
-            estabelecimentos.Add(new FastFood("FoodFast", "na praça de alimentação"));
-            estabelecimentos.Add(new SelfService("ServiceSelf", "na praça de alimentação"));
-            estabelecimentos.Add(new LojaComum("Passagens aereas", "na entrada do shopping"));
         }
+
+
+
+        
     }
 }
 

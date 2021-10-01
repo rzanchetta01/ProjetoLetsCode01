@@ -12,79 +12,56 @@ Precisa adcionar os metodos que darão utilidade a loja, por exemplo comprar rou
 
 namespace ProjetoLesCode01
 {
-    public class LojaComum: ILojas
+    public class LojaComum : ILojas
     {
-        private string nomeLojaComum {get; set;}
-        private string posShop {get;}
-
-
-        private List<String> cardapio = new List<String>();
-        
-
-        public string NomeLoja {
-
-            get  { return this.nomeLojaComum; }           
-        }
-        public string PosShop {
-
-            get  {return this.posShop; }
-        }
-
-        public List<String> Pedidos {
-
-            get { return this.pedidos; }           
-        }
+        private string nomeLojaComum { get; set; }
+        private string posShop { get; }
+        private List<Produto> catalogo = new List<Produto>();
 
         public LojaComum(String nomeLojaComum, string posShop)
         {
             this.posShop = posShop;
             this.nomeLojaComum = nomeLojaComum;
         }
-        public void AddCatalogo(sting algo) 
+
+        public string NomeLoja
         {
-            catalogo.add(algo);
+
+            get { return this.nomeLojaComum; }
         }
 
-        public void MostrarCatalogo(string algo)
+        public string PosShop
         {
-            foreach(var e in catalogo){
-                console.WriteLine(e);
+
+            get { return this.posShop; }
+        }
+
+        public void AddProduto(String nome, Double preco)
+        {
+            catalogo.Add(new Produto(nome, preco));
+        }
+
+        public void MostrarProduto()
+        {
+            foreach (var e in catalogo)
+            {
+                Console.WriteLine(e.ToString());
             }
         }
 
-        public void RemoverDoCatalogo(string algo)
+        public String RemoverProduto(String prato)
         {
-            cardapio.remove(algo);
-        }
-
-                public  List<String> Produtos {
-
-            get { return this.produtos;}
-            set {produtos = AddProduto();}
-        }
-
-        public List<String> AddProduto()
-        {
-            List<String> produto = new List<string>();
-
-            Console.WriteLine("Vamos registrar os produtos que irá vender em sua loja");
-            Console.WriteLine("Quantos produtos deseja adicionar?");
-
-            int nProdutos;
-            Int32.TryParse(Console.ReadLine(), out nProdutos);
-
-            for (int i = 1; i <= nProdutos; i++)
-            {   
-                Console.Write($"\nProduto nº {i}: "); 
-                produto.Add(Console.ReadLine());            
-                Console.WriteLine("Produto adicionado com sucesso");
-                
+            foreach (var e in catalogo)
+            {
+                if (e.NomeProduto == prato)
+                {
+                    catalogo.Remove(e);
+                    return "Produto removido com sucesso";
+                }
             }
 
-            return produto;
+            return null;
+
         }
-
-
-
     }
 }

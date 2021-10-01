@@ -16,9 +16,7 @@ namespace ProjetoLesCode01
     {
         private String nomeFastFood;
         private String posShop; 
-
-
-        private List<String> cardapio = new List<String>();
+        private List<Produto> cardapio = new List<Produto>();
      
         public String NomeLoja
         {
@@ -32,10 +30,7 @@ namespace ProjetoLesCode01
             get { return posShop; }
         }
 
-        public List<String> Cardapio
-        {
-            get { return cardapio; }          
-        }
+        public List<Produto> Cardapio => cardapio;
 
         public FastFood (String nomeFastFood, String posShop)
         {
@@ -43,35 +38,33 @@ namespace ProjetoLesCode01
             this.posShop = posShop;
         }
 
-        public void AddCardapio(String algo)
+        public void AddProduto(String nome, Double preco)
         {
-            cardapio.Add(algo);
+            cardapio.Add(new Produto(nome, preco));
         }
 
-        public void MostrarCardapio()
+        public void MostrarProduto()
         {
             foreach(var e in cardapio)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.ToString());
             }            
         }
 
-        public void RemoverDoCardapio(String algo)
+        public String RemoverProduto(String prato)
         {
-           Cardapio.Remove(algo);
-
-        }
-
-        public double RealizarVenda(List<String> itens)
-        {
-            double precoTotal = 0;
-
-            foreach(var e in itens)
+            foreach (var e in cardapio)
             {
-                precoTotal = precoTotal + 5;
+                if (e.NomeProduto == prato)
+                {
+                    cardapio.Remove(e);
+                    return "Produto removido com sucesso";
+                }
             }
 
-            return precoTotal;
+            return null;
+
         }
+
     }
 }
