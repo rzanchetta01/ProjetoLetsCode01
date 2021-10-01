@@ -9,6 +9,8 @@ namespace ProjetoLetsCode01
     {
         string nomePessoa;
         double saldo;
+        int nBagagem;
+        public string itemBagagem;
         
         public string NomePessoa
         {
@@ -77,17 +79,20 @@ namespace ProjetoLetsCode01
         public void ComprarPassagem (double precopassagem)
         {
             //1 - Já temos: o nome da pessoa e o fato de que ela é um passageiro
-            //2 - Apresentar Destino/Preço (foreach - destinos) - Program
+            //2 - Apresentar Destino
             Console.WriteLine ("Os destinos disponíveis são:");
             foreach (KeyValuePair<int, string> item in destino)
             {
                 Console.WriteLine($"Código Voo {item.Key} para {item.Value}");
             }
 
-            //3 - O cliente seleciona o Destino/Preço
+            //3 - O cliente seleciona o Destino
             Console.WriteLine ("Selecione o código correspondente ao destino desejado:");
-            var destinoCliente = (from e in destinos where e.Key == Console.ReadLine() select e.Value);
-            return destinoCliente;
+            var destinoCliente = (from e in destinos 
+                                where e.Key == Console.ReadLine() 
+                                select e.Value);
+            e.Key = CodVoo;
+            return CodVoo;
 
             //4 - Verifica o saldo da pessoa
             if (ComprarItem())
@@ -104,14 +109,23 @@ namespace ProjetoLetsCode01
 
         public void RegistrarBagagem ()
         {
-            /*
-            1- Já temos: o nome da pessoa e a compra da passagem confirmada
-            2- Quantos itens ela quer registrar?
-            3- O passageiro seleciona
-            4- O passageiro registra os itens
-            5- Confirmação dos itens
-            6- Pronto
-            */
+            //1- Já temos: o nome da pessoa e a compra da passagem confirmada
+            //2- Quantos itens ela quer registrar?
+            Console.WriteLine ("Quantos itens de bagagem você gostaria de registrar?");
+
+            //3- O passageiro seleciona
+                Int32.TryParse(Console.ReadLine(), out nBagagem);
+
+            //4- O passageiro registra os itens
+            for (int i = 1; i <= nBagagem; i++)
+                {
+                    Console.WriteLine($"Item de Bagagem n{i}");
+                    Console.Write("Nome: ");
+                    Console.ReadLine(itemBagagem);
+                    bagagens.Add(itemBagagem);
+                }
+            
+            //5- Confirmação dos itens
         }     
     }
 }

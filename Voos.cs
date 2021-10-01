@@ -10,7 +10,7 @@ namespace ProjetoLetsCode01
 {
     public class Voos
     {
-        double precopassagem = "150";
+        const double precopassagem = "150";
         private int codVoo;
         private string destinoVoo; 
 
@@ -32,6 +32,11 @@ namespace ProjetoLetsCode01
             destinos.Add(3, "BA");
             destinos.Add(4, "PR");
             destinos.Add(5, "ES");
+        }
+
+        public void Bagagem ()
+        {
+            List <string> bagagens = new List <string>();
         }
 
     }
