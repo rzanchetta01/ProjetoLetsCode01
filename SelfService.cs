@@ -41,8 +41,24 @@ namespace ProjetoLesCode01
         }
 
         public double FazerVenda(Pessoa pessoa, double total)
-        {
-            throw new NotImplementedException();
+        {                
+            Console.WriteLine($"Bem vindo ao {NomeLoja}");
+            Console.WriteLine("Esse é o nosso cardapio");
+            MostrarProduto();
+            Console.WriteLine("0 para finalizar a compra");
+            String nProduto = Console.ReadLine();
+
+            if(nProduto == "0")
+            {
+                return total;
+            }
+            else
+            {
+                Produto p = cardapio.First(p => p.NomeProduto.ToUpper() == nProduto.ToUpper());
+                total += p.Preco;
+                Console.WriteLine(total);
+                return FazerVenda(pessoa, total);
+            }                    
         }
 
         public void MostrarProduto()
@@ -66,8 +82,6 @@ namespace ProjetoLesCode01
 
             return null;
 
-        }
-
-
+        }        
     }  
 }
