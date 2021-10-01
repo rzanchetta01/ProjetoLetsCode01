@@ -9,6 +9,9 @@ namespace ProjetoLesCode01
     {
         static void Main(string[] args)
         {
+<<<<<<< HEAD
+            Console.WriteLine("Salve salve ");
+=======
             Console.WriteLine("oii");
 
             List<ILojas> estabelecimentos = new List<ILojas>();//Lista que armazena os estabelecimentos
@@ -66,6 +69,7 @@ namespace ProjetoLesCode01
             {
                 AddLoja(estabelecimentos);
             }
+>>>>>>> 78017aa825532b3266d9d4ae2f309fb4e04805dd
         }
         public static String AuxAddLoja()//Função auxiliar do AddLoja
         {
