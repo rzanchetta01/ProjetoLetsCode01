@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ProjetoLetsCode01
+namespace ProjetoLesCode01
 {
-    public interface ICLiente
+    public interface ICliente
     {
         string NomeCliente{get;}
-        void ComprarProduto();
+        Double ComprarProduto(double precovenda);
     }
 }

@@ -3,67 +3,63 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ProjetoLetsCode01
+namespace ProjetoLesCode01
 {
     public class Pessoa: ICliente, IPassageiro
     {
-        string nomePessoa;
-        double saldo;
-        
-        public string NomePessoa
-        {
-            get{ return this.nomePessoa; }
-            set{ this.nomePessoa = value; }
-        }
-      
-        public Pessoa (string Nome) 
+        private string nomePessoa;
+        private double saldo;
+        private bool isPassageiro;
+
+        public Pessoa(string Nome, Double saldoInicial, bool isPassageiro)
         {
             this.nomePessoa = Nome;
+            this.saldo = saldoInicial;
+            this.isPassageiro = isPassageiro;
         }
 
-        /* Cadastro da Pessoa */    
-        public void CadastrarPessoa()
+        public string NomePessoa
         {
-            Console.WriteLine ("Bem vindo! Por favor, informe seu nome.");
-            this.Nome = Console.ReadLine();
-            Console.WriteLine ("Informe seu saldo disponível:");
-            Double.TryParse(Console.ReadLine(), out saldo);
+            get{ return this.nomePessoa; }       
+        }
+      
+        public string NomeCliente
+        {
+            get { return nomePessoa; }
         }
 
-        /* Verificação: se a pessoa é somente cliente ou se é passageiro. */
-        public void VerificarPessoa()
+        public string NomePassageiro
         {
-            Console.WriteLine("Você é um passageiro? Sim ou Não.");
-            string resposta = Console.ReadLine().ToLower();
-
-            if(resposta == "sim")
-            {
-                Console.WriteLine("Por favor adquira sua passagem.");
-                ComprarPassagem();
-            }
-            else if(resposta == "nao")
-            {
-                Console.WriteLine("Conheça nossas lojas.");
-                //chamar o metodo para menu de compras
-            }
-
+            get { return nomePessoa; }
         }
 
-        /* Atualização de saldo da pessoa após compra de item */
-        double ComprarProduto (double precovenda)
+        public Double Saldo
         {
-            if(ComprarItem())
+            get { return saldo; }
+            set { saldo = value; }
+        }
+
+        public bool IsPassageiro
+        {
+            get { return isPassageiro; }
+        }    
+
+        public double ComprarProduto (double precovenda)
+        {
+            if(ComprarItem(precovenda))
             {
-               saldo -= precovenda;
+               Saldo -= precovenda;
             }
-            return saldo;
+            Console.WriteLine($"A compra foi confirmada.");
+            Console.WriteLine($"Seu saldo é {Saldo}.");
+            return Saldo;
         }
 
         /* Verificação do saldo disponível da pessoa */
-        public bool ComprarItem(double saldo, double valCompra) 
+        private bool ComprarItem(double valCompra) 
         {
             
-            if(saldo >= valCompra)
+            if(Saldo >= valCompra)
             {
                 return true;
             }
@@ -74,30 +70,35 @@ namespace ProjetoLetsCode01
            
         }
 
-        public void ComprarPassagem (double precopassagem)
+        public void ComprarPassagem (double precopassagem, Voos destino)
         {
+           
             //1 - Já temos: o nome da pessoa e o fato de que ela é um passageiro
-            //2 - Apresentar Destino/Preço (foreach - destinos) - Program
-            Console.WriteLine ("Os destinos disponíveis são:");
-            foreach (KeyValuePair<int, string> item in destino)
-            {
-                Console.WriteLine($"Código Voo {item.Key} para {item.Value}");
-            }
 
-            //3 - O cliente seleciona o Destino/Preço
-            Console.WriteLine ("Selecione o código correspondente ao destino desejado:");
-            var destinoCliente = (from e in destinos where e.Key == Console.ReadLine() select e.Value);
-            return destinoCliente;
+            //2 - O cliente seleciona o Destino/Preço
+            Console.WriteLine ("Selecione o código correspondente ao destino desejado");
+
+            //3 - Apresentar Destino/Preço (foreach - destinos) - Program
+            Console.WriteLine("Os destinos disponíveis são\n");
+
+            //  return destinoCliente;
+            int codVoo;
+            foreach(var e in destino.DestinosVoo())
+            {
+                Console.WriteLine(e.Key + ": " + e.Value);
+            }
+            Int32.TryParse(Console.ReadLine(), out codVoo);
+
 
             //4 - Verifica o saldo da pessoa
-            if (ComprarItem())
+            if (ComprarItem(precopassagem))
             {
                 saldo -= precopassagem;
             }
 
             //5 - Confirma a compra
-            Console.WriteLine ($"A compra da passagem com código {CodVoo} foi confirmada.");
-            Console.WriteLine ($"Seu saldo é {saldo}.");
+            Console.WriteLine ($"A compra da passagem com código {codVoo} foi confirmada.");
+            Console.WriteLine ($"Seu saldo é {Saldo}.");
 
             //voltar pro menu
         }

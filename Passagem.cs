@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ProjetoLetsCode01
+namespace ProjetoLesCode01
 {
-    public class Passagem: IPassageiro
+    public class Passagem
     {
         private string nomePassageiro;
+        
+        private double precoPassagem;
 
-        public string NomePassageiro
+        public string NomePassageiro { get => nomePassageiro; set => nomePassageiro = value; }
+        public double PrecoPassagem { get => precoPassagem; set => precoPassagem = value; }
+
+        public Passagem(string nomePassageiro, double precoPassagem)
         {
-            get {return this.nomePassageiro;}
-            set {this.nomePassageiro = value;}
+            this.nomePassageiro = nomePassageiro;
+            this.precoPassagem = precoPassagem;
         }
     }
 }

@@ -29,17 +29,19 @@ namespace ProjetoLesCode01
 
             get { return this.nomeLojaComum; }
         }
-
         public string PosShop
         {
 
             get { return this.posShop; }
         }
-
-        public void AddProduto(String nome, Double preco)
-        {
-            catalogo.Add(new Produto(nome, preco));
+        
+        public void AddProduto(String nome, Double preco )
+        {   
+                catalogo.Add(new Produto(nome, preco));
         }
+            
+
+        
 
         public void MostrarProduto()
         {

@@ -6,25 +6,23 @@ using System.Threading.Tasks;
 /* Classe que contem a lista de destinos das passagens
 */
 
-namespace ProjetoLetsCode01
+namespace ProjetoLesCode01
 {
-    public class Voos
+    public class Voos : ILojas
     {
-        double precopassagem = "150";
-        private int codVoo;
-        private string destinoVoo; 
+        private string nome;
+        private string posShop;
 
-        public int CodVoo
+        public Voos(string nome, string posShop)
         {
-            get {return this.codVoo;}
+            this.nome = nome;
+            this.posShop = posShop;
         }
 
-        public string DestinoVoo
-        {
-            get {return this.destinoVoo;}
-        }
+        public string NomeLoja { get => nome; }
+        public string PosShop { get => posShop; }
 
-        public void DestinosVoo ()
+        public Dictionary<int, string> DestinosVoo ()
         {
             Dictionary<int, string> destinos = new Dictionary <int, string>();
             destinos.Add(1, "RJ");
@@ -32,7 +30,22 @@ namespace ProjetoLetsCode01
             destinos.Add(3, "BA");
             destinos.Add(4, "PR");
             destinos.Add(5, "ES");
+
+            return destinos;
+        }
+        public void AddProduto(string nome, double preco)
+        {
+            throw new NotImplementedException();
         }
 
+        public void MostrarProduto()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string RemoverProduto(string algo)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

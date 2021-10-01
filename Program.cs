@@ -14,17 +14,41 @@ namespace ProjetoLesCode01
 
 
             List<ILojas> estabelecimentos = new List<ILojas>();//Lista que armazena os estabelecimentos
+            List<Pessoa> pessoas = new List<Pessoa>();
 
-            LojasIncial(estabelecimentos);
-            StartMenu(estabelecimentos);//Menu iniciar do sistema
+            LojasIncial(estabelecimentos);//Cria lojas default, inclusive a empresa aerea
+            StartMenu(estabelecimentos, pessoas);//Menu iniciar do sistema
+            
+            
+                       
         }
         public static void LojasIncial(List<ILojas> estabelecimentos)
         {
-            estabelecimentos.Add(new FastFood("FoodFast", "na praça de alimentação"));
-            estabelecimentos.Add(new SelfService("ServiceSelf", "na praça de alimentação"));
-            estabelecimentos.Add(new LojaComum("Passagens aereas", "na entrada do shopping"));
+            ILojas ps = new LojaComum("Carro do perigo", "na entrada do shopping");
+            ILojas fs = new FastFood("FoodFast", "na praça de alimentação");
+            ILojas sf = new SelfService("ServiceSelf", "na praça de alimentação");
+            ILojas v = new Voos("Passagens aereas", "na entrada do shopping");
+
+            ps.AddProduto("Air jordan duvidos", 99);
+            ps.AddProduto("Disco vinil", 500);
+            ps.AddProduto("Gema do poder que o thanos queria", 99999.99);
+
+            fs.AddProduto("Hamburguer do bom", 25);
+            fs.AddProduto("Hamburguer quase bom", 15);
+            fs.AddProduto("HAmburguer da promoção do dia", 5);
+            fs.AddProduto("Refri free refil", 0);
+
+            sf.AddProduto("Arroz e feijão", 20);
+            sf.AddProduto("Carne", 20);
+            sf.AddProduto("Frango", 20);
+            sf.AddProduto("Bebibas genericas", 6);
+
+            estabelecimentos.Add(fs);
+            estabelecimentos.Add(sf);
+            estabelecimentos.Add(ps);
+            estabelecimentos.Add(v);
         }
-        public static void StartMenu(List<ILojas> estabelecimentos)
+        public static void StartMenu(List<ILojas> estabelecimentos, List<Pessoa> pessoas)
         {
             Console.WriteLine("\nBem vindo ao sistema do shopping ");
             Console.WriteLine("1 para Registrar loja");
@@ -40,16 +64,36 @@ namespace ProjetoLesCode01
             {
                 case 1:
 
-                    AddLoja(estabelecimentos);
+                    AddLoja(estabelecimentos, pessoas);
                     break;
 
                 case 2:
 
+                    Console.Write("\nQual o seu nome: ");
+                    string nome = Console.ReadLine();
+                    double saldoInicial;
+                    bool isPassageiro;
+                    Console.Write("\n Qual o seu saldo para futuras compras? ");
+                    double.TryParse(Console.ReadLine(), out saldoInicial);
+
+                    isPassageiro = RepitirProcesso("\nVocê é um passageiro?");
+                    if(isPassageiro)
+                    {
+                        Console.Write("\nNão esqueça de comprar sua passagem para conseguir ir embora\n");
+                    }
+
+                    Pessoa p = new Pessoa(nome, saldoInicial, isPassageiro);
+                    pessoas.Add(p);
+
+                    Thread.Sleep(200);
+                    Console.WriteLine("Você foi registrado em nosso sistema");
+
+                    StartMenu(estabelecimentos, pessoas);
                     break;
 
                 case 3:
 
-                    Console.WriteLine("Qual loja deseija alterar os dados?");
+                    Console.WriteLine("Qual loja deseja alterar os dados?");
                     
                     foreach (var e in estabelecimentos)
                     {
@@ -82,7 +126,7 @@ namespace ProjetoLesCode01
                                 e.AddProduto(nomePrato, precoPrato);
                                 Console.WriteLine("Produto adicionado com sucesso");
                                 Thread.Sleep(500);
-                                StartMenu(estabelecimentos);
+                                StartMenu(estabelecimentos, pessoas);
                             }
                             else if (AddRemove == 2)
                             {
@@ -91,13 +135,13 @@ namespace ProjetoLesCode01
                                 String removeProduto = Console.ReadLine();
                                 Console.WriteLine(e.RemoverProduto(removeProduto));
                                 Thread.Sleep(500);
-                                StartMenu(estabelecimentos);
+                                StartMenu(estabelecimentos, pessoas);
                             }
                             else
                             {
                                 Console.WriteLine("Produto não encontrado");
                                 Thread.Sleep(500);
-                                StartMenu(estabelecimentos);
+                                StartMenu(estabelecimentos, pessoas);
                             }
                         }
                     }
@@ -116,11 +160,11 @@ namespace ProjetoLesCode01
                 default:
                     Console.WriteLine("Numero incorreto");
                     Thread.Sleep(1000);
-                    StartMenu(estabelecimentos);
+                    StartMenu(estabelecimentos, pessoas);
                     break;
             }
         }
-        public static void AddLoja(List<ILojas> estabelecimentos)//Função para adcionar estabelecimentos
+        public static void AddLoja(List<ILojas> estabelecimentos, List<Pessoa> pessoas)//Função para adcionar estabelecimentos
         {
 
             string tipoLoja;
@@ -227,14 +271,14 @@ namespace ProjetoLesCode01
             else if (tipoLoja == "0")
             {
 
-                StartMenu(estabelecimentos);
+                StartMenu(estabelecimentos, pessoas);
 
             }
             else
             {
                 Console.WriteLine("Tipo de loja não encontrado, tente novamente");
                 Thread.Sleep(1000);
-                AddLoja(estabelecimentos);//Repete o processo de digitar algum tipo de loja errado
+                AddLoja(estabelecimentos, pessoas);//Repete o processo de digitar algum tipo de loja errado
             }
 
             option = RepitirProcesso("\nDesejeita registrar outra loja?");
@@ -242,12 +286,12 @@ namespace ProjetoLesCode01
             if (option)
             {
                 Thread.Sleep(1000);
-                AddLoja(estabelecimentos);
+                AddLoja(estabelecimentos, pessoas);
             }
             else
             {
                 Thread.Sleep(1000);
-                StartMenu(estabelecimentos);
+                StartMenu(estabelecimentos, pessoas);
             }
 
         }
@@ -302,10 +346,10 @@ namespace ProjetoLesCode01
             string option;
 
             Console.WriteLine($"\n{msg} \nsim ou não");
-            option = Console.ReadLine().ToUpper();
+            option = Console.ReadLine();
             Console.WriteLine("");
 
-            if (option == "SIM")
+            if (option.ToUpper() == "SIM")
             {
                 return true;
             }
