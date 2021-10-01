@@ -17,6 +17,7 @@ namespace ProjetoLesCode01
         private String nomeFastFood;
         private String posShop; 
 
+
         private List<String> cardapio = new List<String>();
      
         public String NomeLoja
@@ -24,6 +25,7 @@ namespace ProjetoLesCode01
             get{ return nomeFastFood; }
             set{ nomeFastFood = value; }
         }
+
 
         public String PosShop
         {
@@ -57,6 +59,7 @@ namespace ProjetoLesCode01
         public void RemoverDoCardapio(String algo)
         {
            Cardapio.Remove(algo);
+
         }
 
         public double RealizarVenda(List<String> itens)

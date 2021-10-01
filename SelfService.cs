@@ -7,6 +7,7 @@ namespace ProjetoLesCode01
 {
     public class SelfService: ILojas
     {
+
         private string nomeSelfService;
         private string posShop;
         private List<String> cardapio = new List<String>();
