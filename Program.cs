@@ -185,7 +185,7 @@ namespace ProjetoLesCode01
                 nomeLoja = AuxAddLojaNome(estabelecimentos);
                 posShop = AuxAddLojaPos(estabelecimentos);
                 SelfService sf = new SelfService(nomeLoja, posShop);
-              //  estabelecimentos.Add(sf);
+                estabelecimentos.Add(sf);
 
                 Console.WriteLine("Agora vamos criar o seu cardapio inicial, você pode complementar ele depois através do menu inicial");
                 Console.WriteLine("Quantos pratos deseja adicionar inicialmente");
