@@ -57,7 +57,7 @@ namespace ProjetoLesCode01
             Console.WriteLine("2 para Registrar pessoa");
             Console.WriteLine("3 para alterar um produto de uma loja existente");
             Console.WriteLine("4 para Simular um cliente");
-            Console.WriteLine("0 para Sair");
+            Console.WriteLine("9 para Sair");
 
             int option;//variavel que descide a movimentação do menu pelo codigo
             Int32.TryParse(Console.ReadLine(), out option);
@@ -87,7 +87,7 @@ namespace ProjetoLesCode01
                     StartMenu(estabelecimentos, pessoas);//Caso digite um numero fora do menu, reinicia o processo
                     break;
 
-                case 0:
+                case 9:
                     Console.WriteLine("\nTchau Tchau");
                     Environment.Exit(0);
                     break;
@@ -314,6 +314,7 @@ namespace ProjetoLesCode01
             if (isPassageiro)
             {
                 Console.WriteLine("Qual a sua bagagem\nDigite 0 para sair");
+                Console.Write("Bagagem: ");
                 String bag = Console.ReadLine();
                 while (bag != "0")
                 {

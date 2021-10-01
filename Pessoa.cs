@@ -53,7 +53,7 @@ namespace ProjetoLesCode01
                 Saldo -= precovenda;              
             }
             Console.WriteLine($"A compra foi confirmada.");
-            Console.WriteLine($"Seu saldo é {Saldo}.");
+            Console.WriteLine($"Seu saldo é R$ {Saldo}.");
 
         }
 
@@ -95,20 +95,21 @@ namespace ProjetoLesCode01
             //4 - Verifica o saldo da pessoa
             if (ComprarItem(precopassagem))
             {
+                //5 - Confirma a compra
                 saldo -= precopassagem;
+                Console.WriteLine($"A compra da passagem com código {codVoo} foi confirmada");
+                Console.WriteLine($"Seu saldo é R$ {Saldo}");
             }
-
-            //5 - Confirma a compra
-            Console.WriteLine ($"A compra da passagem com código {codVoo} foi confirmada.");
-            Console.WriteLine ($"Seu saldo é {Saldo}.");
-
-            //voltar pro menu
+            else
+            {
+                Console.WriteLine("Vai dormir no shopping, ta sem dinheiro pra voltar pra casa");
+            }
         }
 
         public void RegistrarBagagem (Produto produto)
         {
             List<string> bagagem = new List<string>();
-
+           
             bagagem.Add(produto.NomeProduto);
         }
 

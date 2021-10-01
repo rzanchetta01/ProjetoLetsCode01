@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 /*
@@ -69,10 +70,10 @@ namespace ProjetoLesCode01
         public Double FazerVenda(Pessoa pessoa, double total)
         {
             
-            Console.WriteLine($"Bem vindo ao {NomeLoja}");
+            Console.WriteLine($"\nBem vindo ao {NomeLoja}");
             Console.WriteLine("Esse é o nosso cardapio");
             MostrarProduto();
-            Console.WriteLine("0 para finalizar a compra");
+            Console.WriteLine("\n0 para finalizar a compra");
             String nProduto = Console.ReadLine();
 
             if(nProduto == "0")
@@ -87,7 +88,8 @@ namespace ProjetoLesCode01
                     return FazerVenda(pessoa, total);
                 }
                 total += p.Preco;
-                Console.WriteLine(total);
+                Console.WriteLine("\n\nAdicionado ao carrinho com sucesso");
+                Thread.Sleep(1000);
                 return FazerVenda(pessoa, total);
             }                    
         }
