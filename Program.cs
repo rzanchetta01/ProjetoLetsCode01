@@ -12,7 +12,9 @@ namespace ProjetoLesCode01
         static void Main(string[] args)
         {
 
+
             List<ILojas> estabelecimentos = new List<ILojas>();//Lista que armazena os estabelecimentos
+
             LojasIncial(estabelecimentos);
             StartMenu(estabelecimentos);//Menu iniciar do sistema
         }
@@ -73,12 +75,13 @@ namespace ProjetoLesCode01
             Console.WriteLine("Para voltar digite 0");
             Console.WriteLine("Temos disponivel para registro : FastFood, LojaComum e SelfService");
             tipoLoja = Console.ReadLine().ToUpper();//Le o tipo de loja e deixa tudo em caixa alta para evitar problemas
-
+            
             if(tipoLoja == "FASTFOOD")
             {
 
                 nomeLoja = AuxAddLoja(estabelecimentos);
                 posShop = "Praça de alimentação";
+
 
                 FastFood ff = new FastFood(nomeLoja, posShop);//Cria um novo fast food
                 ff.AddProduto();//adiciona o cardapio do fastfood
@@ -120,12 +123,14 @@ namespace ProjetoLesCode01
             }
 
 
+
             option = RepitirProcesso("\nDesejeita registrar outra loja?");
             if(option)
             {
                 Thread.Sleep(1000);
                 AddLoja(estabelecimentos);
             }
+
             else
             {
                 Thread.Sleep(1000);
@@ -168,8 +173,7 @@ namespace ProjetoLesCode01
             {
                 return false;
             }
-        }
-        
+        }     
         public static void LojasIncial (List<ILojas> estabelecimentos)
         {
             estabelecimentos.Add(new FastFood("FoodFast", "na praça de alimentação"));
@@ -178,3 +182,4 @@ namespace ProjetoLesCode01
         }
     }
 }
+

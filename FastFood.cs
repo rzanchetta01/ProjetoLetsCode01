@@ -14,53 +14,64 @@ namespace ProjetoLesCode01
 {
     public class FastFood: ILojas
     {
-        private string nomeFastFood {get; set;}
-        private string posShop {get;}
-
-        private List<String> produtos = new List<String>();
-
-        public string NomeLoja {
-
-            get  { return this.nomeFastFood; }           
-        }
-        public string PosShop {
-
-            get  {return this.posShop; }
-        }
+        private String nomeFastFood;
+        private String posShop; 
 
 
-        public FastFood(String nomeFastFood, string posShop)
+        private List<String> cardapio = new List<String>();
+     
+        public String NomeLoja
         {
-            this.posShop = posShop;
+            get{ return nomeFastFood; }
+            set{ nomeFastFood = value; }
+        }
+
+
+        public String PosShop
+        {
+            get { return posShop; }
+        }
+
+        public List<String> Cardapio
+        {
+            get { return cardapio; }          
+        }
+
+        public FastFood (String nomeFastFood, String posShop)
+        {
             this.nomeFastFood = nomeFastFood;
+            this.posShop = posShop;
         }
 
-        public  List<String> Produtos {
-
-            get { return this.produtos;}
-            set {produtos = AddProduto();}
-        }
-
-        public List<String> AddProduto()
+        public void AddCardapio(String algo)
         {
-            List<String> produto = new List<string>();
+            cardapio.Add(algo);
+        }
 
-            Console.WriteLine("Vamos cria o seu cardapio");
-            Console.WriteLine("Quantos produtos deseja adicionar?");
+        public void MostrarCardapio()
+        {
+            foreach(var e in cardapio)
+            {
+                Console.WriteLine(e);
+            }            
+        }
 
-            int nProdutos;
-            Int32.TryParse(Console.ReadLine(), out nProdutos);
+        public void RemoverDoCardapio(String algo)
+        {
+           Cardapio.Remove(algo);
 
-            for (int i = 1; i <= nProdutos; i++)
-            {   
-                Console.Write($"\nProduto nº {i}: "); 
-                produto.Add(Console.ReadLine());            
-                Console.WriteLine("Produto adicionado com sucesso");
-                
+        }
+
+        public double RealizarVenda(List<String> itens)
+        {
+            double precoTotal = 0;
+
+            foreach(var e in itens)
+            {
+                precoTotal = precoTotal + 5;
             }
 
-            return produto;
+            return precoTotal;
         }
-
     }
 }

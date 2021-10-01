@@ -1,0 +1,60 @@
+FAST FOOD TEM
+    Nome do Fastfood == variaveis       |/
+    Posição no shopping == variaveis    |/
+
+    Fastfood == get; set; |/
+    PosicaoShop == get; |/
+
+    Quando querermos dar Valores Iniciais as uma classe no momento de criar usa Construtor
+    Fastfood novo = quando criado recebe ja um nome, e sua posição no shop
+
+    Quando temos 1 variavel local e um recebimento de dado com o mesmo nome
+    This.variavel = contexto que queremos usar a variavel local
+
+
+    String
+    int
+    double
+    bool
+
+    obj ---> objeto (Conjunto de varias variveis)
+    Fastfood --> objeto com (2 strings(nome, pos))
+
+    produto --> Fastfood é cardapio
+    1 CARDAPIO = Inumeros Produtos(alimentos, bebidas, sobremesas)
+
+    1 dado = variavel
+    alguns dados de quantidade especifica = matriz
+    Lista armazena valores de um tipo especifico
+
+    toda matriz por regra tem um tamanho fixo;
+    Lista tem o tamanho escalavel
+
+    quero cardapio tenha 10 <-- Fastfood BK
+    quero cardapio tenha no Minimo 1000000000000000000000000000000 <-- Fastfood Mec
+
+        public void AddCardapio(String produto)
+        {
+            cardapio.Add(produto)
+        }
+
+
+0 // 1 // 2
+
+coca coca == coca cola(produto na posicao 0);
+batata // xburguer
+0 // 1
+
+remove a primeira coisa que for igual a (xburguer)
+
+coca cola // batata 
+
+
+
+
+
+
+
+
+FaStFooD == FastFood
+FASTFOOD == FASTFOOD

@@ -17,8 +17,9 @@ namespace ProjetoLesCode01
         private string nomeLojaComum {get; set;}
         private string posShop {get;}
 
-        private List<String> produtos = new List<String>();
-        private List<String> pedidos = new List<String>();
+
+        private List<String> cardapio = new List<String>();
+        
 
         public string NomeLoja {
 
@@ -38,6 +39,22 @@ namespace ProjetoLesCode01
         {
             this.posShop = posShop;
             this.nomeLojaComum = nomeLojaComum;
+        }
+        public void AddCatalogo(sting algo) 
+        {
+            catalogo.add(algo);
+        }
+
+        public void MostrarCatalogo(string algo)
+        {
+            foreach(var e in catalogo){
+                console.WriteLine(e);
+            }
+        }
+
+        public void RemoverDoCatalogo(string algo)
+        {
+            cardapio.remove(algo);
         }
 
                 public  List<String> Produtos {

@@ -2,20 +2,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-/*
-IMPLEMENTAÇÃO BASE DA CLASE
-
-Precisa adcionar os metodos de preparar pedidos e adcionar os pratos no cardapio
-
-*/
 
 namespace ProjetoLesCode01
 {
     public class SelfService: ILojas
     {
-        private string nomeSelfService {get; set;}
-        private string posShop {get;}
-         private List<String> produtos = new List<String>();
+
+        private string nomeSelfService;
+        private string posShop;
+        private List<String> cardapio = new List<String>();
+        
+        public string NomeLoja 
+        {
+            get  { return this.nomeSelfService; }   
+            set {nomeSelfService = value; }        
+        }
+        public string PosShop
+        {
+          get  {return posShop; }
+        }
+        public List<String> Cardapio
+        {
+          get { return cardapio; }          
+        }
 
         public SelfService(String nomeSelfService, string posShop)
         {
@@ -23,39 +32,36 @@ namespace ProjetoLesCode01
             this.nomeSelfService = nomeSelfService;
         }
 
-        public string NomeLoja {
-
-            get  { return this.nomeSelfService; }           
-        }
-        public string PosShop {
-
-            get  {return this.posShop; }
-        }
-
-        public  List<String> Produtos {
-
-            get { return this.produtos;}
-            set {produtos = AddProduto();}
-        }
-
-        public List<String> AddProduto()
+        public void AddCardapio(String algo)
         {
-            List<String> produto = new List<string>();
+            cardapio.Add(algo);
+        }
 
-            Console.WriteLine("Vamos cria o seu cardapio");
-            Console.WriteLine("Quantos pratos deseja adicionar?");
+        public void MostrarCardapio()
+        {
+            foreach(var e in cardapio)
+            {
+                Console.WriteLine(e);
+            }            
+        }
 
-            int nProdutos;
-            Int32.TryParse(Console.ReadLine(), out nProdutos);
+        public void RemoverDoCardapio(String algo)
+        {
+           Cardapio.Remove(algo);
+        }
 
-            for (int i = 1; i <= nProdutos; i++)
-            {   
-                Console.Write($"\nPrato nº {i}: "); 
-                produto.Add(Console.ReadLine());            
-                Console.WriteLine("Prato adicionado com sucesso");             
+        public double RealizarVenda(List<String> itens)
+        {
+            double precoTotal = 0;
+
+            foreach(var e in itens)
+            {
+                precoTotal = precoTotal + 3;
             }
 
-            return produto;
+            return precoTotal;
         }
-    }
+
+
+    }  
 }
