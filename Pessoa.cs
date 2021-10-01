@@ -10,12 +10,18 @@ namespace ProjetoLesCode01
         private string nomePessoa;
         private double saldo;
         private bool isPassageiro;
+        private bool hasPassagem;
 
         public Pessoa(string Nome, Double saldoInicial, bool isPassageiro)
         {
             this.nomePessoa = Nome;
             this.saldo = saldoInicial;
             this.isPassageiro = isPassageiro;
+        }
+
+        public bool HasPassagem
+        {
+            get { return hasPassagem; }
         }
 
         public string NomePessoa
@@ -99,6 +105,7 @@ namespace ProjetoLesCode01
                 saldo -= precopassagem;
                 Console.WriteLine($"A compra da passagem com código {codVoo} foi confirmada");
                 Console.WriteLine($"Seu saldo é R$ {Saldo}");
+                hasPassagem = true;
             }
             else
             {

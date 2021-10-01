@@ -25,10 +25,10 @@ namespace ProjetoLesCode01
             ILojas fs = new FastFood("FoodFast", "na praça de alimentação");
             ILojas sf = new SelfService("ServiceSelf", "na praça de alimentação");
             
-            Pessoa p = new Pessoa("r", 1000, false);
+            Pessoa p = new Pessoa("r", 1000, true);
             
 
-            ps.AddProduto("Air jordan duvidos", 99);
+            ps.AddProduto("Air jordan duvidosos", 99);
             ps.AddProduto("Disco vinil", 500);
             ps.AddProduto("Gema do poder que o thanos queria", 99999.99);
 
@@ -88,6 +88,19 @@ namespace ProjetoLesCode01
                     break;
 
                 case 9:
+                    Console.WriteLine("O segurança chega até você e pergunta:");
+                    Console.Write("Segurança - ");
+                    var x = SelectCliente(pessoas);
+                    
+                    if(x.IsPassageiro)
+                    {
+                        BoaViagem(x);                       
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nAchei que tivesse passagem");
+                    }
+                           
                     Console.WriteLine("\nTchau Tchau");
                     Environment.Exit(0);
                     break;
@@ -447,6 +460,12 @@ namespace ProjetoLesCode01
                 if (RepitirProcesso("Deseja comprar sua passagem?"))
                 {
                     cliente.ComprarPassagem(340, TAP());
+                    Thread.Sleep(700);
+
+                    if (!RepitirProcesso("quer continuar suas compras?"))
+                    {
+                        StartMenu(estabelecimentos, pessoas);
+                    }
                 }
             }
 
@@ -463,7 +482,21 @@ namespace ProjetoLesCode01
         {
             return new Voos("Passagens aereas", "na entrada do shopping");
         }
-    
+        
+        public static void BoaViagem(Pessoa pessoa)
+        {
+           if(pessoa.HasPassagem)
+           {
+                Console.WriteLine("Qual o seu voo?");
+                Console.Write("Para: ");
+                String voo ="para " + Console.ReadLine();
+
+                Random randNum = new Random();
+                
+                Console.WriteLine($"O seu voo {voo}, parte daqui {randNum.Next(2, 3)} horas");
+                Console.WriteLine("Boa sorte esperando ");
+            }
+        }
     }
 }
 
