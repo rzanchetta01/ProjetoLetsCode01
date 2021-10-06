@@ -42,6 +42,7 @@ namespace ProjetoLesCode01
         }
         public void AddCatalogo(sting algo) 
         {
+<<<<<<< Updated upstream
             catalogo.add(algo);
         }
 
@@ -58,14 +59,40 @@ namespace ProjetoLesCode01
         }
 
                 public  List<String> Produtos {
+=======
+            get { return this.nomeLojaComum; }
+        }
+        public string PosShop
+        {
+            get { return this.posShop; }
+        }
+        
+        public void AddProduto( String nome, Double preco )
+        {   
+                catalogo.Add(new Produto(nome, preco));
+        }     
+>>>>>>> Stashed changes
 
             get { return this.produtos;}
             set {produtos = AddProduto();}
         }
 
+<<<<<<< Updated upstream
         public List<String> AddProduto()
         {
             List<String> produto = new List<string>();
+=======
+        public String RemoverProduto(String produto)
+        {
+            foreach (var e in catalogo)
+            {
+                if (e.NomeProduto == produto)
+                {
+                    catalogo.Remove(e);
+                    return "Produto removido com sucesso";
+                }
+            }
+>>>>>>> Stashed changes
 
             Console.WriteLine("Vamos registrar os produtos que irá vender em sua loja");
             Console.WriteLine("Quantos produtos deseja adicionar?");
@@ -73,6 +100,7 @@ namespace ProjetoLesCode01
             int nProdutos;
             Int32.TryParse(Console.ReadLine(), out nProdutos);
 
+<<<<<<< Updated upstream
             for (int i = 1; i <= nProdutos; i++)
             {   
                 Console.Write($"\nProduto nº {i}: "); 
@@ -82,6 +110,37 @@ namespace ProjetoLesCode01
             }
 
             return produto;
+=======
+        public double FazerVenda(Pessoa pessoa, double totalDaCompra)
+        {
+            
+            Console.WriteLine($"\nBem vindo a {NomeLoja}");
+            Console.WriteLine("Esse é o nosso catálogo");
+            MostrarProduto();
+            Console.WriteLine("\n0 para finalizar a compra");
+            String nProduto = Console.ReadLine();
+
+            if(nProduto == "0")
+            {
+                return totalDaCompra;
+            }
+            else
+            {
+                Produto p = catalogo.FirstOrDefault(p => p.NomeProduto.ToUpper() == nProduto.ToUpper());
+                if(p == null)
+                {
+                    return FazerVenda(pessoa, totalDaCompra);
+                }
+
+                totalDaCompra += p.Preco;
+               
+                pessoa.RegistrarBagagem(p);
+                Console.WriteLine("\n\n Adicionado ao carrinho com sucesso");
+                Thread.Sleep(1000);
+                return FazerVenda(pessoa, totalDaCompra);
+               
+            }                    
+>>>>>>> Stashed changes
         }
 
 

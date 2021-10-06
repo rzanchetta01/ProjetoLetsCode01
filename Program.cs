@@ -12,11 +12,65 @@ namespace ProjetoLesCode01
         static void Main(string[] args)
         {
 
+<<<<<<< Updated upstream
 
             List<ILojas> estabelecimentos = new List<ILojas>();//Lista que armazena os estabelecimentos
 
             LojasIncial(estabelecimentos);
             StartMenu(estabelecimentos);//Menu iniciar do sistema
+=======
+            List<ILojas> estabelecimentos = new List<ILojas>();//Lista que armazena os estabelecimentos
+            List<Pessoa> pessoas = new List<Pessoa>();
+
+            /*
+            FastFood ff = new FastFood("bk", "x");
+            ff.AddProduto("lanche", 1000, 1);
+            ff.AddProduto("lanche2", 1000, 2);
+            ff.AddProduto("lanch30", 1000, 3);
+
+            ff.FazerVenda(new Pessoa("rodrigo", 1000, false), 0);
+            AddLoja(estabelecimentos, pessoas);
+            */
+
+
+
+
+
+             
+
+            // LojasIncial(estabelecimentos, pessoas);//Cria lojas default, inclusive a empresa aerea
+            // StartMenu(estabelecimentos, pessoas);//Menu iniciar do sistema
+
+        }
+        public static void LojasIncial(List<ILojas> estabelecimentos, List<Pessoa> pessoas)
+        {
+
+            ILojas ps = new LojaComum("Carro do perigo", "na entrada do shopping");
+            ILojas fs = new FastFood("FoodFast", "na praça de alimentação");
+            ILojas sf = new SelfService("ServiceSelf", "na praça de alimentação");
+            
+            
+            
+            ps.AddProduto("Air jordan duvidosos", 99);
+            ps.AddProduto("Disco vinil", 500);
+            ps.AddProduto("Gema do poder que o thanos queria", 99999.99);
+
+            fs.AddProduto("a", 25);
+            fs.AddProduto("Hamburguer quase bom", 15);
+            fs.AddProduto("HAmburguer da promoção do dia", 5);
+            fs.AddProduto("Refri free refil", 0);
+
+            sf.AddProduto("Arroz e feijão", 20);
+            sf.AddProduto("Carne", 20);
+            sf.AddProduto("Frango", 20);
+            sf.AddProduto("Bebibas genericas", 6);
+
+            estabelecimentos.Add(fs);
+            estabelecimentos.Add(sf);
+            estabelecimentos.Add(ps);           
+            
+           
+>>>>>>> Stashed changes
         }
 
         public static void StartMenu(List<ILojas> estabelecimentos)
@@ -79,9 +133,47 @@ namespace ProjetoLesCode01
             if(tipoLoja == "FASTFOOD")
             {
 
+<<<<<<< Updated upstream
                 nomeLoja = AuxAddLoja(estabelecimentos);
                 posShop = "Praça de alimentação";
 
+=======
+                Console.WriteLine("Criando um FastFood");
+                nomeLoja = AuxAddLojaNome(estabelecimentos);
+                posShop = AuxAddLojaPos(estabelecimentos);
+                FastFood ff = new FastFood(nomeLoja, posShop);
+                estabelecimentos.Add(ff);
+
+                Console.WriteLine("Agora vamos criar o seu cardapio inicial, você pode complementar ele depois através do menu inicial");
+                Console.WriteLine("Quantos pratos deseja adicionar inicialmente");
+                int nProduto;
+                string nomePrato;
+                double precoPrato;
+                int idProduto;
+                Int32.TryParse(Console.ReadLine(), out nProduto);
+
+                for (int i = 1; i <= nProduto; i++)
+                {
+                    Console.WriteLine($"Produto n{i}");
+
+                    Console.Write("Nome: ");
+                    nomePrato = Console.ReadLine();
+
+                    Console.Write("\nPreco: ");
+                    double.TryParse(Console.ReadLine(), out precoPrato);
+
+                    Console.WriteLine("ID do produto: ");
+                    Int32.TryParse(Console.ReadLine(), out idProduto);
+
+                    while(ff.Cardapio.Keys.Contains(idProduto))
+                    {
+                        Console.WriteLine("Ja existe um produto com esse id, digite outro");
+                        Int32.TryParse(Console.ReadLine(), out idProduto);
+                    }
+
+                    ff.AddProduto(nomePrato, precoPrato, idProduto);
+                }
+>>>>>>> Stashed changes
 
                 FastFood ff = new FastFood(nomeLoja, posShop);//Cria um novo fast food
                 ff.AddProduto();//adiciona o cardapio do fastfood
@@ -91,6 +183,7 @@ namespace ProjetoLesCode01
             }
             else if (tipoLoja == "LOJACOMUM")
             {
+<<<<<<< Updated upstream
                 nomeLoja = AuxAddLoja(estabelecimentos);
                 posShop =  "corredores do shopping";
 
@@ -99,6 +192,35 @@ namespace ProjetoLesCode01
                 estabelecimentos.Add(lc);//Salva em estabelecimentos a loja criada
                 Thread.Sleep(1000);
                 Console.WriteLine($"\nFoi registrado e construido mágicamente em algum dos {posShop} uma loja com o nome de {nomeLoja}");
+=======
+                Console.WriteLine("Criando uma LojaComum");
+                nomeLoja = AuxAddLojaNome(estabelecimentos);
+                posShop = AuxAddLojaPos(estabelecimentos);
+                LojaComum lc = new LojaComum(nomeLoja, posShop);
+                estabelecimentos.Add(lc);
+
+                Console.WriteLine("Agora vamos registrar seus produtos iniciais, você pode adicionar outros através do menu inicial");
+                Console.WriteLine("Quantos produtos deseja adicionar inicialmente?");
+
+                int nProduto;
+                string nomeProduto;
+                double precoProduto;
+                Int32.TryParse(Console.ReadLine(), out nProduto);
+
+                for (int i = 1; i <= nProduto; i++)
+                {
+                    Console.WriteLine($"Prato n{i}");
+
+                    Console.Write("Nome: ");
+                    nomeProduto = Console.ReadLine();
+
+                    Console.Write("\nPreco: ");
+                    double.TryParse(Console.ReadLine(), out precoProduto);  
+                    
+                    lc.AddProduto(nomeProduto, precoProduto);
+                }
+
+>>>>>>> Stashed changes
             }
             else if (tipoLoja == "SELFSERVICE")
             {
@@ -164,8 +286,13 @@ namespace ProjetoLesCode01
             Console.WriteLine($"\n{msg} \nsim ou não");
             option = Console.ReadLine().ToUpper();
             Console.WriteLine("");
+<<<<<<< Updated upstream
 
             if(option == "SIM")
+=======
+           
+            if (option.ToUpper() == "SIM")
+>>>>>>> Stashed changes
             {
                 return true;
             }
