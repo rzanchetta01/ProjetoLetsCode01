@@ -25,9 +25,9 @@ namespace ProjetoLesCode01
             this.posShop = posShop;
         }
 
-        public String NomeLoja { get => nomeFastFood; }
+        public string NomeLoja { get => nomeFastFood; }
 
-        public String PosShop { get => posShop; }
+        public string PosShop { get => posShop; }
 
         public Dictionary<int, Produto> Cardapio => cardapio;
 
@@ -52,7 +52,7 @@ namespace ProjetoLesCode01
             }
         }
 
-        public Double FazerVenda(Pessoa pessoa, double totalCompra)
+        public Double FazerVenda(double totalCompra)
         {
             Console.WriteLine($"\nBem vindo ao {NomeLoja}");
             Console.WriteLine("Esse é o nosso cardapio");           
@@ -70,7 +70,7 @@ namespace ProjetoLesCode01
             {
                 Console.WriteLine("Produto não encontrado, tente novamente");
                 Thread.Sleep(1000);
-                return FazerVenda(pessoa, totalCompra);
+                return FazerVenda(totalCompra);
             }
             else
             {
@@ -79,7 +79,7 @@ namespace ProjetoLesCode01
                 totalCompra += p.Value.Preco;
                 Console.WriteLine("\n\nAdicionado ao carrinho com sucesso");
                 Thread.Sleep(1000);
-                return FazerVenda(pessoa, totalCompra);
+                return FazerVenda(totalCompra);
             }
         }
     }

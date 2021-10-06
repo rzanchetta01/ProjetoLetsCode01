@@ -23,6 +23,11 @@ namespace ProjetoLesCode01
         public string NomeLoja { get => nome; }
         public string PosShop { get => posShop; }
 
+        public void AddProduto(string nome, double preco, int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Dictionary<int, string> DestinosVoo ()
         {
            
@@ -34,7 +39,8 @@ namespace ProjetoLesCode01
 
             return destinos;
         }
-        public void AddProduto(string nome, double preco)
+
+        public double FazerVenda(double totalCompra)
         {
             throw new NotImplementedException();
         }
@@ -44,12 +50,7 @@ namespace ProjetoLesCode01
             throw new NotImplementedException();
         }
 
-        public string RemoverProduto(string algo)
-        {
-            throw new NotImplementedException();
-        }
-
-        public double FazerVenda(Pessoa pessoa, double total)
+        public void RemoverProduto(int nProduto)
         {
             throw new NotImplementedException();
         }
