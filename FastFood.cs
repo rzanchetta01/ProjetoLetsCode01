@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 /*
@@ -35,7 +36,7 @@ namespace ProjetoLesCode01
             cardapio.Add(id, new Produto(nome, preco));
         }
 
-        public void MostrarCardapio()
+        public void MostrarProduto()
         {
             foreach (var e in cardapio)
             {
@@ -53,7 +54,6 @@ namespace ProjetoLesCode01
 
         public Double FazerVenda(Pessoa pessoa, double totalCompra)
         {
-
             Console.WriteLine($"\nBem vindo ao {NomeLoja}");
             Console.WriteLine("Esse é o nosso cardapio");           
             MostrarProduto();
@@ -70,7 +70,7 @@ namespace ProjetoLesCode01
             {
                 Console.WriteLine("Produto não encontrado, tente novamente");
                 Thread.Sleep(1000);
-                FazerVenda(pessoa, totalCompra);
+                return FazerVenda(pessoa, totalCompra);
             }
             else
             {

@@ -11,13 +11,13 @@ namespace ProjetoLesCode01
         string NomeLoja {get;}
         string PosShop {get;}
 
-        void AddProduto(String nome, Double preco);
+        void AddProduto(String nome, Double preco, int id);
 
         void MostrarProduto();
 
-        String RemoverProduto(String algo);
+        void RemoverProduto(int nProduto);
 
-        Double FazerVenda(Pessoa pessoa, double total);
+        Double FazerVenda(double totalCompra);
     }
     
 }

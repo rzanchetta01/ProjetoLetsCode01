@@ -28,19 +28,19 @@ namespace ProjetoLesCode01
             Pessoa p = new Pessoa("r", 1000, true);
             
 
-            ps.AddProduto("Air jordan duvidosos", 99);
-            ps.AddProduto("Disco vinil", 500);
-            ps.AddProduto("Gema do poder que o thanos queria", 99999.99);
+            ps.AddProduto("Air jordan duvidosos", 99, 11);
+            ps.AddProduto("Disco vinil", 500, 33);
+            ps.AddProduto("Gema do poder que o thanos queria", 99999.99, 666);
 
-            fs.AddProduto("a", 25);
-            fs.AddProduto("Hamburguer quase bom", 15);
-            fs.AddProduto("HAmburguer da promoção do dia", 5);
-            fs.AddProduto("Refri free refil", 0);
+            fs.AddProduto("a", 25,10);
+            fs.AddProduto("Hamburguer quase bom", 15,11);
+            fs.AddProduto("HAmburguer da promoção do dia", 5,12);
+            fs.AddProduto("Refri free refil", 0,13);
 
-            sf.AddProduto("Arroz e feijão", 20);
-            sf.AddProduto("Carne", 20);
-            sf.AddProduto("Frango", 20);
-            sf.AddProduto("Bebibas genericas", 6);
+            sf.AddProduto("Arroz e feijão", 20,11);
+            sf.AddProduto("Carne", 20,12);
+            sf.AddProduto("Frango", 20,13);
+            sf.AddProduto("Bebibas genericas", 6,14);
 
             estabelecimentos.Add(fs);
             estabelecimentos.Add(sf);
@@ -134,12 +134,14 @@ namespace ProjetoLesCode01
                 posShop = AuxAddLojaPos(estabelecimentos);
                 FastFood ff = new FastFood(nomeLoja, posShop);
                 estabelecimentos.Add(ff);
-
-                Console.WriteLine("Agora vamos criar o seu cardapio inicial, você pode complementar ele depois através do menu inicial");
-                Console.WriteLine("Quantos pratos deseja adicionar inicialmente");
+                
                 int nProduto;
                 string nomePrato;
                 double precoPrato;
+                int idProduto;
+
+                Console.WriteLine("Agora vamos criar o seu cardapio inicial, você pode complementar ele depois através do menu inicial");
+                Console.WriteLine("Quantos pratos deseja adicionar inicialmente");
                 Int32.TryParse(Console.ReadLine(), out nProduto);
 
                 for (int i = 1; i <= nProduto; i++)
@@ -152,7 +154,17 @@ namespace ProjetoLesCode01
                     Console.Write("\nPreco: ");
                     double.TryParse(Console.ReadLine(), out precoPrato);
 
-                    ff.AddProduto(nomePrato, precoPrato);
+                    Console.Write("\nId do produto: ");
+                    Int32.TryParse(Console.ReadLine(), out idProduto);
+
+                    while(ff.Cardapio.Keys.Contains(idProduto))
+                    {
+                        Console.WriteLine("Ja existe um produto com essa id, tente novamente");
+                        Console.Write("\nId do produto: ");
+                        Int32.TryParse(Console.ReadLine(), out idProduto);
+                    }
+
+                    ff.AddProduto(nomePrato, precoPrato, idProduto);
                 }
 
             }
