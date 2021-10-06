@@ -42,24 +42,6 @@ namespace ProjetoLesCode01
         }
         public void AddCatalogo(sting algo) 
         {
-<<<<<<< Updated upstream
-            catalogo.add(algo);
-        }
-
-        public void MostrarCatalogo(string algo)
-        {
-            foreach(var e in catalogo){
-                console.WriteLine(e);
-            }
-        }
-
-        public void RemoverDoCatalogo(string algo)
-        {
-            cardapio.remove(algo);
-        }
-
-                public  List<String> Produtos {
-=======
             get { return this.nomeLojaComum; }
         }
         public string PosShop
@@ -71,17 +53,11 @@ namespace ProjetoLesCode01
         {   
                 catalogo.Add(new Produto(nome, preco));
         }     
->>>>>>> Stashed changes
 
             get { return this.produtos;}
             set {produtos = AddProduto();}
         }
 
-<<<<<<< Updated upstream
-        public List<String> AddProduto()
-        {
-            List<String> produto = new List<string>();
-=======
         public String RemoverProduto(String produto)
         {
             foreach (var e in catalogo)
@@ -92,7 +68,6 @@ namespace ProjetoLesCode01
                     return "Produto removido com sucesso";
                 }
             }
->>>>>>> Stashed changes
 
             Console.WriteLine("Vamos registrar os produtos que irá vender em sua loja");
             Console.WriteLine("Quantos produtos deseja adicionar?");
@@ -100,17 +75,6 @@ namespace ProjetoLesCode01
             int nProdutos;
             Int32.TryParse(Console.ReadLine(), out nProdutos);
 
-<<<<<<< Updated upstream
-            for (int i = 1; i <= nProdutos; i++)
-            {   
-                Console.Write($"\nProduto nº {i}: "); 
-                produto.Add(Console.ReadLine());            
-                Console.WriteLine("Produto adicionado com sucesso");
-                
-            }
-
-            return produto;
-=======
         public double FazerVenda(Pessoa pessoa, double totalDaCompra)
         {
             
@@ -140,7 +104,6 @@ namespace ProjetoLesCode01
                 return FazerVenda(pessoa, totalDaCompra);
                
             }                    
->>>>>>> Stashed changes
         }
 
 

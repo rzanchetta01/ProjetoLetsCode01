@@ -12,13 +12,6 @@ namespace ProjetoLesCode01
         static void Main(string[] args)
         {
 
-<<<<<<< Updated upstream
-
-            List<ILojas> estabelecimentos = new List<ILojas>();//Lista que armazena os estabelecimentos
-
-            LojasIncial(estabelecimentos);
-            StartMenu(estabelecimentos);//Menu iniciar do sistema
-=======
             List<ILojas> estabelecimentos = new List<ILojas>();//Lista que armazena os estabelecimentos
             List<Pessoa> pessoas = new List<Pessoa>();
 
@@ -70,7 +63,6 @@ namespace ProjetoLesCode01
             estabelecimentos.Add(ps);           
             
            
->>>>>>> Stashed changes
         }
 
         public static void StartMenu(List<ILojas> estabelecimentos)
@@ -133,11 +125,6 @@ namespace ProjetoLesCode01
             if(tipoLoja == "FASTFOOD")
             {
 
-<<<<<<< Updated upstream
-                nomeLoja = AuxAddLoja(estabelecimentos);
-                posShop = "Praça de alimentação";
-
-=======
                 Console.WriteLine("Criando um FastFood");
                 nomeLoja = AuxAddLojaNome(estabelecimentos);
                 posShop = AuxAddLojaPos(estabelecimentos);
@@ -173,7 +160,6 @@ namespace ProjetoLesCode01
 
                     ff.AddProduto(nomePrato, precoPrato, idProduto);
                 }
->>>>>>> Stashed changes
 
                 FastFood ff = new FastFood(nomeLoja, posShop);//Cria um novo fast food
                 ff.AddProduto();//adiciona o cardapio do fastfood
@@ -183,16 +169,6 @@ namespace ProjetoLesCode01
             }
             else if (tipoLoja == "LOJACOMUM")
             {
-<<<<<<< Updated upstream
-                nomeLoja = AuxAddLoja(estabelecimentos);
-                posShop =  "corredores do shopping";
-
-                LojaComum lc = new LojaComum(nomeLoja, posShop);//Cria um nova loja comum
-                lc.AddProduto();//adiciona os produtos dessa loja
-                estabelecimentos.Add(lc);//Salva em estabelecimentos a loja criada
-                Thread.Sleep(1000);
-                Console.WriteLine($"\nFoi registrado e construido mágicamente em algum dos {posShop} uma loja com o nome de {nomeLoja}");
-=======
                 Console.WriteLine("Criando uma LojaComum");
                 nomeLoja = AuxAddLojaNome(estabelecimentos);
                 posShop = AuxAddLojaPos(estabelecimentos);
@@ -220,7 +196,6 @@ namespace ProjetoLesCode01
                     lc.AddProduto(nomeProduto, precoProduto);
                 }
 
->>>>>>> Stashed changes
             }
             else if (tipoLoja == "SELFSERVICE")
             {
@@ -286,13 +261,8 @@ namespace ProjetoLesCode01
             Console.WriteLine($"\n{msg} \nsim ou não");
             option = Console.ReadLine().ToUpper();
             Console.WriteLine("");
-<<<<<<< Updated upstream
-
-            if(option == "SIM")
-=======
            
             if (option.ToUpper() == "SIM")
->>>>>>> Stashed changes
             {
                 return true;
             }

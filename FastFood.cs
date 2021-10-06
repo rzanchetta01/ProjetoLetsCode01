@@ -15,31 +15,7 @@ namespace ProjetoLesCode01
     public class FastFood: ILojas
     {
         private String nomeFastFood;
-<<<<<<< Updated upstream
-        private String posShop; 
-
-
-        private List<String> cardapio = new List<String>();
-     
-        public String NomeLoja
-        {
-            get{ return nomeFastFood; }
-            set{ nomeFastFood = value; }
-        }
-
-
-        public String PosShop
-        {
-            get { return posShop; }
-        }
-
-        public List<String> Cardapio
-        {
-            get { return cardapio; }          
-        }
-=======
         private String posShop;
->>>>>>> Stashed changes
 
         private Dictionary<int, Produto> cardapio = new();
         
@@ -49,11 +25,6 @@ namespace ProjetoLesCode01
             this.posShop = posShop;
         }
 
-<<<<<<< Updated upstream
-        public void AddCardapio(String algo)
-        {
-            cardapio.Add(algo);
-=======
         public String NomeLoja { get => nomeFastFood; }
  
         public String PosShop { get => posShop; }
@@ -63,35 +34,12 @@ namespace ProjetoLesCode01
         public void AddProduto(String nome, Double preco, int id)
         {
             Cardapio.Add(id, new Produto(nome, preco));
->>>>>>> Stashed changes
         }
 
         public void MostrarCardapio()
         {
             foreach(var e in cardapio)
             {
-<<<<<<< Updated upstream
-                Console.WriteLine(e);
-            }            
-        }
-
-        public void RemoverDoCardapio(String algo)
-        {
-           Cardapio.Remove(algo);
-
-        }
-
-        public double RealizarVenda(List<String> itens)
-        {
-            double precoTotal = 0;
-
-            foreach(var e in itens)
-            {
-                precoTotal = precoTotal + 5;
-            }
-
-            return precoTotal;
-=======
                 Console.WriteLine($"Produto {e.Key}: {e.Value}");
             }
         }
@@ -136,7 +84,6 @@ namespace ProjetoLesCode01
         public string RemoverProduto(string algo)
         {
             throw new NotImplementedException();
->>>>>>> Stashed changes
         }
     }
 
