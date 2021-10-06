@@ -23,7 +23,6 @@ namespace ProjetoLesCode01
         public override string ToString()
         {
             return NomeProduto + " R$ " + Preco;
-            
         }
     }
 }

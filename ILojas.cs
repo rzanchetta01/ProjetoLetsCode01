@@ -9,8 +9,15 @@ namespace ProjetoLesCode01
     {
          
         string NomeLoja {get;}
-        string PosShop {get;}  
-        List<String> AddProduto();
+        string PosShop {get;}
+
+        void AddProduto(String nome, Double preco);
+
+        void MostrarProduto();
+
+        String RemoverProduto(String algo);
+
+        Double FazerVenda(Pessoa pessoa, double total);
     }
     
 }

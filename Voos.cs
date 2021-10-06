@@ -10,7 +10,7 @@ namespace ProjetoLesCode01
 {
     public class Voos : ILojas
     {
-        Dictionary<int, string> destinos = new();
+        Dictionary<int, string> destinos = new Dictionary<int, string>();
         private string nome;
         private string posShop;
         

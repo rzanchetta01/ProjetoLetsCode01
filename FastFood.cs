@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 /*
@@ -36,7 +37,7 @@ namespace ProjetoLesCode01
             Cardapio.Add(id, new Produto(nome, preco));
         }
 
-        public void MostrarCardapio()
+        public void MostrarProduto()
         {
             foreach(var e in cardapio)
             {
