@@ -58,6 +58,7 @@ namespace ProjetoLesCode01
             Console.WriteLine("3 para alterar um produto de uma loja existente");
             Console.WriteLine("4 para Simular um cliente");
             Console.WriteLine("9 para Sair");
+            Console.WriteLine("batata");
 
             int option;//variavel que descide a movimentação do menu pelo codigo
             Int32.TryParse(Console.ReadLine(), out option);
