@@ -26,7 +26,7 @@ namespace ProjetoLesCode01
         }
         public string NomeLoja { get => nomeLojaComum; }
         public string PosShop { get => posShop; }
-        public Dictionary<int, Produto> Catalogo { get => catalogo; }
+        public Dictionary<int, Produto> Produtos { get => catalogo; }
 
         public void AddProduto(String nome, Double preco, int id)
         {
@@ -37,7 +37,7 @@ namespace ProjetoLesCode01
         {
             foreach (var e in catalogo)
             {
-                Console.WriteLine($"Produto{e.Key}: {e.Value}");
+                Console.WriteLine($"Produto {e.Key}: {e.Value}");
             }
         }
 

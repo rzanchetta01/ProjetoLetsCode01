@@ -40,6 +40,8 @@ namespace ProjetoLesCode01
             return destinos;
         }
 
+        public Dictionary<int, Produto> Produtos => throw new NotImplementedException();
+
         public double FazerVenda(double totalCompra)
         {
             throw new NotImplementedException();

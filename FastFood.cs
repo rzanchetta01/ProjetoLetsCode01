@@ -29,7 +29,7 @@ namespace ProjetoLesCode01
 
         public string PosShop { get => posShop; }
 
-        public Dictionary<int, Produto> Cardapio => cardapio;
+        public Dictionary<int, Produto> Produtos => cardapio;
 
         public void AddProduto(String nome, Double preco, int id)
         {
@@ -40,7 +40,7 @@ namespace ProjetoLesCode01
         {
             foreach (var e in cardapio)
             {
-                Console.WriteLine($"Produto{e.Key}: {e.Value}");
+                Console.WriteLine($"Produto {e.Key}: {e.Value}");
             }
         }
 

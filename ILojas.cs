@@ -11,6 +11,8 @@ namespace ProjetoLesCode01
         string NomeLoja {get;}
         string PosShop {get;}
 
+        Dictionary<int, Produto> Produtos { get; }
+
         void AddProduto(String nome, Double preco, int id);
 
         void MostrarProduto();
