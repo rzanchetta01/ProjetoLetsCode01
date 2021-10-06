@@ -14,28 +14,33 @@ namespace ProjetoLesCode01
 {
     public class LojaComum: ILojas
     {
-        private string nomeLojaComum {get; set;}
-        private string posShop {get;}
+        private string nomeLojaComum;
+        private string posShop;
 
         private List<String> cardapio = new List<String>();
-        
+        private List<string> pedidos = new List<string>();
 
-        public string NomeLoja {
+        public string NomeLoja 
+        {
 
-            get  { return this.nomeLojaComum; }           
+            get  { return this.nomeLojaComum; }  
+            set   { nomeLojaComum = value; }      
         }
-        public string PosShop {
-
+        public string PosShop
+        {
             get  {return this.posShop; }
+
         }
 
-        public List<String> Cardapio {
-
-            get { return this.cardapio; }          
+        public List<String> Cardapio 
+        {
+          get { return this.cardapio; }          
         }
-        public List<String> Pedidos {
+        public List<String> Pedidos
+        {
 
-            get { return this.pedidos; }           
+            get { return this.pedidos; }  
+            set {this.pedidos = value; }         
         }
 
         public LojaComum(String nomeLojaComum, string posShop)
