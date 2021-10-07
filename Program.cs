@@ -12,14 +12,13 @@ namespace ProjetoLesCode01
         static void Main(string[] args)
         {
 
-            Dictionary<int, ILojas> estabelecimentos = new();//Lista que armazena os estabelecimentos
-            List<Pessoa> pessoas = new();
-
+            Dictionary<int, ILojas> estabelecimentos = new();//Lista que armazena os estabelecimentos         
+            Dictionary<int, Pessoa> pessoas = new();
             LojasIncial(estabelecimentos, pessoas);//Cria lojas default, inclusive a empresa aerea
             StartMenu(estabelecimentos, pessoas);//Menu iniciar do sistema
 
         }
-        public static void LojasIncial(Dictionary<int, ILojas> estabelecimentos, List<Pessoa> pessoas)
+        public static void LojasIncial(Dictionary<int, ILojas> estabelecimentos, Dictionary<int, Pessoa> pessoas)
         {
             ILojas ps = new LojaComum("Carro do perigo", "na entrada do shopping");
             ILojas fs = new FastFood("FoodFast", "na praça de alimentação");
@@ -44,11 +43,11 @@ namespace ProjetoLesCode01
             estabelecimentos.Add(estabelecimentos.Count + 1, fs);
             estabelecimentos.Add(estabelecimentos.Count + 1, sf);
             estabelecimentos.Add(estabelecimentos.Count + 1, ps);
-            pessoas.Add(p);
+            pessoas.Add(pessoas.Count + 1,p);
 
         }
 
-        public static void StartMenu(Dictionary<int, ILojas> estabelecimentos, List<Pessoa> pessoas)//Mostra o menu inicial do sistema
+        public static void StartMenu(Dictionary<int, ILojas> estabelecimentos, Dictionary<int, Pessoa> pessoas)//Mostra o menu inicial do sistema
         {
             //Menu inicial
             Console.WriteLine("\nBem vindo ao sistema do shopping ");
@@ -112,7 +111,7 @@ namespace ProjetoLesCode01
             }
         }
 
-        public static void AddLoja(Dictionary<int, ILojas> estabelecimentos, List<Pessoa> pessoas)//Função para adcionar estabelecimentos
+        public static void AddLoja(Dictionary<int, ILojas> estabelecimentos, Dictionary<int, Pessoa> pessoas)//Função para adcionar estabelecimentos
         {
 
             string tipoLoja;
@@ -249,7 +248,7 @@ namespace ProjetoLesCode01
             }
         }
 
-        public static void AddCliente(Dictionary<int, ILojas> estabelecimentos, List<Pessoa> pessoas)//Registra novos clientes
+        public static void AddCliente(Dictionary<int, ILojas> estabelecimentos, Dictionary<int, Pessoa> pessoas)//Registra novos clientes
         {
             Console.Write("\nQual o seu nome: ");
             string nome = Console.ReadLine();
@@ -262,7 +261,7 @@ namespace ProjetoLesCode01
 
 
             Pessoa p = new Pessoa(nome, saldoInicial, isPassageiro);
-            pessoas.Add(p);
+            pessoas.Add(pessoas.Count + 1,p);
 
             if (isPassageiro)
             {
@@ -285,7 +284,7 @@ namespace ProjetoLesCode01
             StartMenu(estabelecimentos, pessoas);
         }
 
-        public static void AlteraDadosLoja(Dictionary<int, ILojas> estabelecimentos, List<Pessoa> pessoas)//Altera o catalogo/produto das lojas
+        public static void AlteraDadosLoja(Dictionary<int, ILojas> estabelecimentos, Dictionary<int, Pessoa> pessoas)//Altera o catalogo/produto das lojas
         {
             Console.WriteLine("Qual loja deseja alterar os dados?");
 
@@ -321,29 +320,28 @@ namespace ProjetoLesCode01
             }
         }
 
-        public static Pessoa SelectCliente(List<Pessoa> pessoas)
+        public static Pessoa SelectCliente(Dictionary<int, Pessoa> pessoas)
         {
             Console.WriteLine("Quem você é?\n");
 
             foreach (var e in pessoas)
             {
-                Console.WriteLine(e.NomePessoa);
+                Console.WriteLine($"{e.Key} : {e.Value.NomePessoa}");
             }
 
             Console.WriteLine("");
 
-            string selectPessoa = Console.ReadLine();
-
-            foreach (var e in pessoas)
+            Int32.TryParse(Console.ReadLine(), out int selectPessoa);    
+            
+            if(pessoas.ContainsKey(selectPessoa))
             {
-                if (e.NomePessoa.ToUpper() == selectPessoa.ToUpper())
-                {
-                    return e;
-                }
+                return pessoas.Values.ElementAt(selectPessoa - 1);
             }
-
-            Console.WriteLine("Cliente não econtrado, tente novamente");
-            return SelectCliente(pessoas);
+            else
+            {
+                Console.WriteLine("Cliente não econtrado, tente novamente");
+                return SelectCliente(pessoas);
+            }                      
         }
 
         public static ILojas SelectEstabelecimento(Dictionary<int, ILojas> estabelecimentos)
@@ -369,7 +367,7 @@ namespace ProjetoLesCode01
             }        
         }
 
-        public static void FazerCompra(Dictionary<int, ILojas> estabelecimentos, List<Pessoa> pessoas)
+        public static void FazerCompra(Dictionary<int, ILojas> estabelecimentos, Dictionary<int, Pessoa> pessoas)
         {
             Pessoa cliente = SelectCliente(pessoas);
             if (cliente.IsPassageiro)
