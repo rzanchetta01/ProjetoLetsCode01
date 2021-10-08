@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjetoLesCode01
 {
-    public class Produto
+    public class Produto //Todo e qualquer produto
     {
         private String nome;
         private Double preco;
@@ -20,7 +20,7 @@ namespace ProjetoLesCode01
         public string NomeProduto { get => nome; set => nome = value; }
         public double Preco { get => preco; set => preco = value; }
 
-        public override string ToString()
+        public override string ToString() //Retorna o produto junto com seu preco
         {
             return NomeProduto + " R$ " + Preco;
         }

@@ -5,19 +5,21 @@ using System.Threading.Tasks;
 
 namespace ProjetoLesCode01
 {
-    public interface ILojas
+    public interface ILojas//Interface de toda e qualquer loja
     {
          
         string NomeLoja {get;}
         string PosShop {get;}
 
-        void AddProduto(String nome, Double preco);
+        Dictionary<int, Produto> Produtos { get; }
+
+        void AddProduto(String nome, Double preco, int id);
 
         void MostrarProduto();
 
-        String RemoverProduto(String algo);
+        void RemoverProduto(int nProduto);
 
-        Double FazerVenda(Pessoa pessoa, double total);
+        Double FazerVenda(double totalCompra);
     }
     
 }

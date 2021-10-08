@@ -13,87 +13,71 @@ Precisa adcionar os metodos que darão utilidade a loja, por exemplo comprar rou
 
 namespace ProjetoLesCode01
 {
-    public class LojaComum : ILojas
+    public class LojaComum : ILojas //Todo e qualquer tipo de loja que não seja alimenticia
     {
-        private string nomeLojaComum { get; set; }
-        private string posShop { get; }
-        private List<Produto> catalogo = new List<Produto>();
+        private readonly string nomeLojaComum;
+        private readonly string posShop;
+        private readonly Dictionary<int, Produto> catalogo = new();
 
-        public LojaComum(String nomeLojaComum, string posShop)
+        public LojaComum(String nomeLojaComum, string posShop)//construtor
         {
             this.posShop = posShop;
             this.nomeLojaComum = nomeLojaComum;
         }
+        public string NomeLoja { get => nomeLojaComum; }
+        public string PosShop { get => posShop; }
+        public Dictionary<int, Produto> Produtos { get => catalogo; }
 
-        public string NomeLoja
+        public void AddProduto(String nome, Double preco, int id)// add produto no catalogo
         {
-
-            get { return this.nomeLojaComum; }
+            catalogo.Add(id, new Produto(nome, preco));
         }
-        public string PosShop
-        {
 
-            get { return this.posShop; }
-        }
-        
-        public void AddProduto(String nome, Double preco )
-        {   
-                catalogo.Add(new Produto(nome, preco));
-        }
-            
-
-        
-
-        public void MostrarProduto()
+        public void MostrarProduto()//mostra o catalogo
         {
             foreach (var e in catalogo)
             {
-                Console.WriteLine(e.ToString());
+                Console.WriteLine($"Produto {e.Key}: {e.Value}");
             }
         }
 
-        public String RemoverProduto(String prato)
+        public void RemoverProduto(int nProduto)//Remove um produto do catalogo
         {
-            foreach (var e in catalogo)
+            if (catalogo.Keys.Contains(nProduto))
             {
-                if (e.NomeProduto == prato)
-                {
-                    catalogo.Remove(e);
-                    return "Produto removido com sucesso";
-                }
+                catalogo.Remove(nProduto);
             }
-
-            return null;
-
         }
 
-        public double FazerVenda(Pessoa pessoa, double total)
+        public double FazerVenda(double totalCompra)//Processo de venda da loja
         {                
             Console.WriteLine($"\nBem vindo a {NomeLoja}");
             Console.WriteLine("Esse é o nosso catálogo");
             MostrarProduto();
             Console.WriteLine("\n0 para finalizar a compra");
-            String nProduto = Console.ReadLine();
+            Console.WriteLine("Digite o código do produto");
+            bool suc = Int32.TryParse(Console.ReadLine(), out int nProduto);
 
-            if(nProduto == "0")
+            if (nProduto == 0)//Encerra o processo de compra
             {
-                return total;
+                return totalCompra;
+            }
+            else if (!catalogo.Keys.Contains(nProduto) || !suc)//se não econtrar o produto
+            {
+                Console.WriteLine("Produto não encontrado, tente novamente");
+                Thread.Sleep(1000);
+                return FazerVenda(totalCompra);
             }
             else
             {
-                Produto p = catalogo.FirstOrDefault(p => p.NomeProduto.ToUpper() == nProduto.ToUpper());
-                if(p == null)
-                {
-                    return FazerVenda(pessoa, total);
-                }
-                total += p.Preco;
-               
-                pessoa.RegistrarBagagem(p);
-                Console.WriteLine("\n\n Adicionado ao carrinho com sucesso");
+                var p = catalogo.FirstOrDefault(p => p.Key == nProduto);
+
+                totalCompra += p.Value.Preco;
+                Console.WriteLine("\n\nAdicionado ao carrinho com sucesso");
                 Thread.Sleep(1000);
-                return FazerVenda(pessoa, total);
-               
-            }                    
+                return FazerVenda(totalCompra);
+            }
+                           
         }
     }
 }

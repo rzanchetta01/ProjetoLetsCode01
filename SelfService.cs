@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace ProjetoLesCode01
 {
-    public class SelfService : ILojas
+    public class SelfService : ILojas //Para restaurantes do tipo SelfService
     {
-
-        private string nomeSelfService;
-        private string posShop;
-        private List<Produto> cardapio = new List<Produto>();
-
+        private readonly String nomeSelfService;
+        private readonly String posShop;
+        private readonly Dictionary<int, Produto> cardapio = new();
 
         public SelfService(String nomeSelfService, string posShop)
         {
@@ -20,74 +18,59 @@ namespace ProjetoLesCode01
             this.nomeSelfService = nomeSelfService;
         }
 
-        public string NomeLoja 
+        public string NomeLoja { get => nomeSelfService; }
+        public string PosShop { get => posShop; }
+        public Dictionary<int, Produto> Produtos { get => cardapio; }
+
+        public void AddProduto(String nome, Double preco, int id)//Adiciona um produto ao cardapio do restaurante
         {
-            get  { return this.nomeSelfService; }   
-            set {nomeSelfService = value; }        
+            cardapio.Add(id, new Produto(nome, preco));
         }
 
-        public string PosShop
-        {
-          get  {return posShop; }
-        }
-
-        public List<Produto> Cardapio
-        {
-          get { return cardapio; }          
-        }
-
-        public void AddProduto(String nome, Double preco)
-        {
-            cardapio.Add(new Produto(nome, preco));
-        }
-
-        public double FazerVenda(Pessoa pessoa, double total)
-        {                
-            Console.WriteLine($"\nBem vindo ao {NomeLoja}");
-            Console.WriteLine("Esse é o nosso cardapio\n");
-            MostrarProduto();
-            Console.WriteLine("\n0 para finalizar a compra");
-            String nProduto = Console.ReadLine();
-
-            if(nProduto == "0")
-            {
-                return total;
-            }
-            else
-            {
-                Produto p = cardapio.FirstOrDefault(p => p.NomeProduto.ToUpper() == nProduto.ToUpper());
-                if(p == null)
-                {
-                    return FazerVenda(pessoa, total);
-                }
-                total += p.Preco;
-                Console.WriteLine("\n\n Adicionado ao carrinho com sucesso");
-                Thread.Sleep(1000);
-                return FazerVenda(pessoa, total);
-            }                    
-        }
-
-        public void MostrarProduto()
-        {
-            foreach(var e in cardapio)
-            {
-                Console.WriteLine(e.ToString());
-            }            
-        }
-
-        public String RemoverProduto(String prato)
+        public void MostrarProduto()//Mostra o cardapio
         {
             foreach (var e in cardapio)
             {
-                if (e.NomeProduto == prato)
-                {
-                    cardapio.Remove(e);
-                    return "Produto removido com sucesso";
-                }
+                Console.WriteLine($"Produto {e.Key}: {e.Value}");
             }
+        }
 
-            return null;
+        public void RemoverProduto(int nProduto)//Remove produtos do cardapio
+        {
+            if (cardapio.Keys.Contains(nProduto))
+            {
+                cardapio.Remove(nProduto);
+            }
+        }
+        public Double FazerVenda(double totalCompra)//Proceso de venda do restaurante
+        {
+            Console.WriteLine($"\nBem vindo ao {NomeLoja}");
+            Console.WriteLine("Esse é o nosso cardapio");
+            MostrarProduto();
+            Console.WriteLine("Qual produto deseja? selecione pelo ID");
+            Console.WriteLine("\n0 para finalizar a compra");
+            Console.WriteLine("Digite o código do produto");
+            bool suc = Int32.TryParse(Console.ReadLine(), out int nProduto);
 
-        }        
+            if (nProduto == 0)//Prosegue ao pagamento
+            {
+                return totalCompra;
+            }
+            else if (!cardapio.Keys.Contains(nProduto) || !suc)//Caso não econtre o produto
+            {
+                Console.WriteLine("Produto não encontrado, tente novamente");
+                Thread.Sleep(1000);
+                return FazerVenda(totalCompra);
+            }
+            else
+            {
+                var p = cardapio.FirstOrDefault(p => p.Key == nProduto);
+
+                totalCompra += p.Value.Preco;
+                Console.WriteLine("\n\nAdicionado ao carrinho com sucesso");
+                Thread.Sleep(1000);
+                return FazerVenda(totalCompra);
+            }
+        }
     }  
 }
