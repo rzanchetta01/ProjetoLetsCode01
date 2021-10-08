@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ProjetoLesCode01
 {
-    public class SelfService : ILojas
+    public class SelfService : ILojas //Para restaurantes do tipo SelfService
     {
-        private String nomeSelfService;
-        private String posShop;
-        private Dictionary<int, Produto> cardapio = new();
+        private readonly String nomeSelfService;
+        private readonly String posShop;
+        private readonly Dictionary<int, Produto> cardapio = new();
 
         public SelfService(String nomeSelfService, string posShop)
         {
@@ -22,12 +22,12 @@ namespace ProjetoLesCode01
         public string PosShop { get => posShop; }
         public Dictionary<int, Produto> Produtos { get => cardapio; }
 
-        public void AddProduto(String nome, Double preco, int id)
+        public void AddProduto(String nome, Double preco, int id)//Adiciona um produto ao cardapio do restaurante
         {
             cardapio.Add(id, new Produto(nome, preco));
         }
 
-        public void MostrarProduto()
+        public void MostrarProduto()//Mostra o cardapio
         {
             foreach (var e in cardapio)
             {
@@ -35,14 +35,14 @@ namespace ProjetoLesCode01
             }
         }
 
-        public void RemoverProduto(int nProduto)
+        public void RemoverProduto(int nProduto)//Remove produtos do cardapio
         {
             if (cardapio.Keys.Contains(nProduto))
             {
                 cardapio.Remove(nProduto);
             }
         }
-        public Double FazerVenda(double totalCompra)
+        public Double FazerVenda(double totalCompra)//Proceso de venda do restaurante
         {
             Console.WriteLine($"\nBem vindo ao {NomeLoja}");
             Console.WriteLine("Esse é o nosso cardapio");
@@ -52,11 +52,11 @@ namespace ProjetoLesCode01
             Console.WriteLine("Digite o código do produto");
             bool suc = Int32.TryParse(Console.ReadLine(), out int nProduto);
 
-            if (nProduto == 0)
+            if (nProduto == 0)//Prosegue ao pagamento
             {
                 return totalCompra;
             }
-            else if (!cardapio.Keys.Contains(nProduto) || !suc)
+            else if (!cardapio.Keys.Contains(nProduto) || !suc)//Caso não econtre o produto
             {
                 Console.WriteLine("Produto não encontrado, tente novamente");
                 Thread.Sleep(1000);

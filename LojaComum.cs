@@ -13,13 +13,13 @@ Precisa adcionar os metodos que darão utilidade a loja, por exemplo comprar rou
 
 namespace ProjetoLesCode01
 {
-    public class LojaComum : ILojas
+    public class LojaComum : ILojas //Todo e qualquer tipo de loja que não seja alimenticia
     {
-        private string nomeLojaComum;
-        private string posShop;
-        private Dictionary<int, Produto> catalogo = new();
+        private readonly string nomeLojaComum;
+        private readonly string posShop;
+        private readonly Dictionary<int, Produto> catalogo = new();
 
-        public LojaComum(String nomeLojaComum, string posShop)
+        public LojaComum(String nomeLojaComum, string posShop)//construtor
         {
             this.posShop = posShop;
             this.nomeLojaComum = nomeLojaComum;
@@ -28,12 +28,12 @@ namespace ProjetoLesCode01
         public string PosShop { get => posShop; }
         public Dictionary<int, Produto> Produtos { get => catalogo; }
 
-        public void AddProduto(String nome, Double preco, int id)
+        public void AddProduto(String nome, Double preco, int id)// add produto no catalogo
         {
             catalogo.Add(id, new Produto(nome, preco));
         }
 
-        public void MostrarProduto()
+        public void MostrarProduto()//mostra o catalogo
         {
             foreach (var e in catalogo)
             {
@@ -41,7 +41,7 @@ namespace ProjetoLesCode01
             }
         }
 
-        public void RemoverProduto(int nProduto)
+        public void RemoverProduto(int nProduto)//Remove um produto do catalogo
         {
             if (catalogo.Keys.Contains(nProduto))
             {
@@ -49,7 +49,7 @@ namespace ProjetoLesCode01
             }
         }
 
-        public double FazerVenda(double totalCompra)
+        public double FazerVenda(double totalCompra)//Processo de venda da loja
         {                
             Console.WriteLine($"\nBem vindo a {NomeLoja}");
             Console.WriteLine("Esse é o nosso catálogo");
@@ -58,11 +58,11 @@ namespace ProjetoLesCode01
             Console.WriteLine("Digite o código do produto");
             bool suc = Int32.TryParse(Console.ReadLine(), out int nProduto);
 
-            if (nProduto == 0)
+            if (nProduto == 0)//Encerra o processo de compra
             {
                 return totalCompra;
             }
-            else if (!catalogo.Keys.Contains(nProduto) || !suc)
+            else if (!catalogo.Keys.Contains(nProduto) || !suc)//se não econtrar o produto
             {
                 Console.WriteLine("Produto não encontrado, tente novamente");
                 Thread.Sleep(1000);
