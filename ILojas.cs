@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ProjetoLesCode01
 {
-    public interface ILojas//Interface de toda e qualquer loja
+    public interface ILojas
     {
          
         string NomeLoja {get;}

@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace ProjetoLesCode01
 {
-    public class Voos : ILojas //Loja de passagens aereas
+    public class Voos : ILojas
     {
-        readonly Dictionary<int, string> destinos = new();
-        private readonly string nome;
-        private readonly string posShop;
+        Dictionary<int, string> destinos = new Dictionary<int, string>();
+        private string nome;
+        private string posShop;
         
         public Voos(string nome, string posShop)
         {
@@ -23,7 +23,7 @@ namespace ProjetoLesCode01
         public string NomeLoja { get => nome; }
         public string PosShop { get => posShop; }
 
-        public void AddProduto(string nome, double preco, int id)//não tem um catálogo, apenas os destinos de voo
+        public void AddProduto(string nome, double preco, int id)
         {
             throw new NotImplementedException();
         }
@@ -47,19 +47,12 @@ namespace ProjetoLesCode01
             throw new NotImplementedException();
         }
 
-        public Dictionary<int, Produto> Produtos => throw new NotImplementedException(); //não tem um catalogo
-
-        public double FazerVenda(double totalCompra) //não tem um catalogo
+        public void MostrarProduto()
         {
             throw new NotImplementedException();
         }
 
-        public void MostrarProduto() //não tem um catalogo
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RemoverProduto(int nProduto) //não tem um catalogo
+        public void RemoverProduto(int nProduto)
         {
             throw new NotImplementedException();
         }

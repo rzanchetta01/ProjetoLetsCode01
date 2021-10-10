@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ProjetoLesCode01
 {
-    public interface IPassageiro//Interface para pessoa que é passageiro
+    public interface IPassageiro
     {
         string NomePassageiro{get;}
         bool IsPassageiro { get; }
