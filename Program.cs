@@ -17,6 +17,7 @@ namespace ProjetoLesCode01
             LojasIncial(estabelecimentos, pessoas);//Cria lojas default, inclusive a empresa aerea
             StartMenu(estabelecimentos, pessoas);//Menu iniciar do sistema
 
+
         }
         public static void LojasIncial(Dictionary<int, ILojas> estabelecimentos, Dictionary<int, Pessoa> pessoas)
         {
