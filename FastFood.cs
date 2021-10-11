@@ -64,6 +64,7 @@ namespace ProjetoLesCode01
 
             if (nProduto == 0)
             {
+                Console.WriteLine($"\n\n{PrepararPedido()}\n\n");                
                 return totalCompra;
             }
             else if (!cardapio.Keys.Contains(nProduto) || !suc)
@@ -77,20 +78,20 @@ namespace ProjetoLesCode01
                 var p = cardapio.FirstOrDefault(p => p.Key == nProduto);
 
                 totalCompra += p.Value.Preco;
-                Console.WriteLine("\n\nAdicionado ao carrinho com sucesso");
-                Console.WriteLine(PrepararPedido());
+                Console.WriteLine("\n\nAdicionado ao carrinho com sucesso");                 
                 Thread.Sleep(1000);
-                return FazerVenda(totalCompra);
+                return FazerVenda(totalCompra);               
             }
         }
 
         private string PrepararPedido()
         {
-            string preparando = Console.WriteLine("Preparando Sensações...");
+            string preparando = "Preparando Sensações...";
             Thread.Sleep(1000);
-            return PrepararPedido(preparando);
+            return preparando;
         }
     }
+
 
 
 }
