@@ -12,6 +12,7 @@ namespace ProjetoLesCode01
         static void Main(string[] args)
         {
 
+
             Dictionary<int, ILojas> estabelecimentos = new();//Lista que armazena os estabelecimentos         
             Dictionary<int, Pessoa> pessoas = new();
             LojasIncial(estabelecimentos, pessoas);//Cria lojas default, inclusive a empresa aerea
@@ -441,6 +442,7 @@ namespace ProjetoLesCode01
 
                 estabelecimento.AddProduto(nomePrato, precoPrato, idProduto);
             }
+
         }
     }
 }
