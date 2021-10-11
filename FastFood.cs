@@ -78,9 +78,17 @@ namespace ProjetoLesCode01
 
                 totalCompra += p.Value.Preco;
                 Console.WriteLine("\n\nAdicionado ao carrinho com sucesso");
+                Console.WriteLine(PrepararPedido());
                 Thread.Sleep(1000);
                 return FazerVenda(totalCompra);
             }
+        }
+
+        private string PrepararPedido()
+        {
+            string preparando = Console.WriteLine("Preparando Sensações...");
+            Thread.Sleep(1000);
+            return PrepararPedido(preparando);
         }
     }
 
