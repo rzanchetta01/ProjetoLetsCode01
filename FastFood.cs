@@ -64,7 +64,7 @@ namespace ProjetoLesCode01
 
             if (nProduto == 0)
             {
-                Console.WriteLine($"\n\n{PrepararPedido()}\n\n");                
+                PrepararPedido();             
                 return totalCompra;
             }
             else if (!cardapio.Keys.Contains(nProduto) || !suc)
@@ -84,12 +84,24 @@ namespace ProjetoLesCode01
             }
         }
 
-        private string PrepararPedido()
+        private void PrepararPedido()
         {
-            string preparando = "Preparando Sensações...";
+            Console.WriteLine("\nPreparando pedido...");
+            Thread.Sleep(500);
+            Console.WriteLine("Fritando batata...");
+            Thread.Sleep(500);
+            Console.WriteLine("Hamburguer na chapa...");
+            Thread.Sleep(500);
+            Console.WriteLine("Preparando bebida...");
+            Thread.Sleep(500);
+            Console.WriteLine("Preparando sobremesa...");
+            Thread.Sleep(500);
+            Console.WriteLine("Pedido pronto!\n");
+
             Thread.Sleep(1000);
-            return preparando;
         }
+        
+
     }
 
 
